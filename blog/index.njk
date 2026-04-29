@@ -1,0 +1,132 @@
+---
+layout: base.njk
+title: Articles
+description: Articles de fond sur l'entraînement, l'hypertrophie et la force — écrits par les coachs Relentless Strength Systems.
+extraCss: |
+  /* ─── BLOG INDEX ─── */
+  .blog-hero {
+    background: var(--dark);
+    padding: 5rem 2rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-tag {
+    font-family: var(--font-cond);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+  .blog-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .blog-hero p {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 600px;
+  }
+  .blog-main {
+    padding: 4rem 2rem;
+    min-height: 50vh;
+  }
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .article-card {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .article-card:hover { border-color: rgba(200,16,46,0.35); }
+  .article-date {
+    font-family: var(--font-cond);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .article-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    line-height: 1.1;
+  }
+  .article-excerpt {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .article-author {
+    font-family: var(--font-cond);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .article-arrow {
+    font-family: var(--font-cond);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+  .empty-state {
+    color: var(--muted);
+    font-size: 1rem;
+    text-align: center;
+    padding: 4rem 0;
+  }
+  @media (max-width: 900px) { .articles-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 600px) { .articles-grid { grid-template-columns: 1fr; } }
+---
+
+<section class="blog-hero">
+  <div class="container">
+    <p class="section-tag">Contenu éducatif</p>
+    <h1>ARTICLES</h1>
+    <p>Des articles de fond sur l'entraînement, l'hypertrophie et la force — écrits par nos coachs.</p>
+  </div>
+</section>
+
+<section class="blog-main">
+  {% if collections.posts.length %}
+    <div class="articles-grid">
+      {% for post in collections.posts %}
+      <a href="{{ post.url }}" class="article-card">
+        <div class="article-date">{{ post.date | readableDate }}</div>
+        <div class="article-title">{{ post.data.title | upper }}</div>
+        {% if post.data.excerpt %}
+        <div class="article-excerpt">{{ post.data.excerpt }}</div>
+        {% endif %}
+        {% if post.data.author %}
+        <div class="article-author">Par {{ post.data.author }}</div>
+        {% endif %}
+        <span class="article-arrow">Lire l'article →</span>
+      </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">Aucun article publié pour l'instant.</div>
+  {% endif %}
+</section>

@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: adrien-relentless/relentless-website
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: "data/pics/blog"
+public_folder: "/data/pics/blog"
+
+locale: fr
+
+collections:
+  - name: "posts"
+    label: "Articles"
+    folder: "blog/posts"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date de publication", name: "date", widget: "datetime", format: "yyyy-MM-dd", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: "Auteur", name: "author", widget: "string", required: false }
+      - { label: "Résumé (extrait)", name: "excerpt", widget: "text", required: false, hint: "Court résumé affiché sur la liste des articles (2-3 phrases)." }
+      - { label: "Contenu", name: "body", widget: "markdown" }
