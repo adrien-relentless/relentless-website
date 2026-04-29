@@ -1904,8 +1904,7 @@
       var html = '';
       items.slice(0, 3).forEach(function(item) {
         var title   = (item.querySelector('title')   || {textContent:''}).textContent;
-        var link    = (item.querySelector('link')    || {textContent:''}).textContent.trim()
-                      || 'https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau';
+        var link    = 'https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau';
         var pubDate = (item.querySelector('pubDate') || {textContent:''}).textContent;
         var desc    = (item.querySelector('description') || {textContent:''}).textContent
                         .replace(/<[^>]*>/g, '').trim().substring(0, 140);
