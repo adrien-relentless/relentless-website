@@ -1,7 +1,7 @@
 const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
-  // Pass through static assets
+  // Pass through static assets unchanged
   eleventyConfig.addPassthroughCopy("data");
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy({ "Index.html": "index.html" });
@@ -15,7 +15,7 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
   });
 
-  // Sort posts by date descending
+  // Posts collection sorted newest first
   eleventyConfig.addCollection("posts", function(collectionApi) {
     return collectionApi.getFilteredByGlob("blog/posts/*.md").sort((a, b) => {
       return b.date - a.date;
@@ -26,8 +26,7 @@ module.exports = function(eleventyConfig) {
     dir: {
       input: ".",
       output: "_site",
-      includes: "_includes",
-      layouts: "_layouts"
+      includes: "_includes"
     },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk"
