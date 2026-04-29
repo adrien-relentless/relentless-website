@@ -15,7 +15,7 @@ collections:
     slug: "{{slug}}"
     fields:
       - { label: "Titre", name: "title", widget: "string" }
-      - { label: "Date de publication", name: "date", widget: "datetime", format: "yyyy-MM-dd", date_format: "yyyy-MM-dd", time_format: false, picker_utc: true, default: "" }
+      - { label: "Date de publication (AAAA-MM-JJ)", name: "date", widget: "string", hint: "Format : 2025-04-29", pattern: ["^[0-9]{4}-[0-9]{2}-[0-9]{2}$", "Format requis : AAAA-MM-JJ (ex: 2025-04-29)"] }
       - { label: "Auteur", name: "author", widget: "string", required: false }
       - { label: "Résumé (extrait)", name: "excerpt", widget: "text", required: false, hint: "Court résumé affiché sur la liste des articles (2-3 phrases)." }
       - { label: "Contenu", name: "body", widget: "markdown" }
