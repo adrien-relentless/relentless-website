@@ -1955,37 +1955,67 @@
     tryProxy(0);
   })();
 
-  /* ── Spotify Podcast last 3 episodes (RSS) ─────────────────── */
+  /* ── Podcast last 3 episodes (Acast RSS) ───────────────────── */
   (function() {
     var grid = document.getElementById('podcast-grid');
     if (!grid) return;
-    fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://feeds.buzzsprout.com/relentless.rss'))
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        var parser = new DOMParser();
-        var xml = parser.parseFromString(data.contents, 'application/xml');
-        var items = xml.querySelectorAll('item');
-        if (!items.length) throw new Error('no items');
-        var html = '';
-        for (var i = 0; i < Math.min(3, items.length); i++) {
-          var item = items[i];
-          var title = item.querySelector('title') ? item.querySelector('title').textContent : '';
-          var link = item.querySelector('link') ? item.querySelector('link').textContent : 'https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau';
-          var pubDate = item.querySelector('pubDate') ? item.querySelector('pubDate').textContent : '';
-          var desc = item.querySelector('description') ? item.querySelector('description').textContent.replace(/<[^>]*>/g,'').substring(0,120) + '…' : '';
-          var d = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', {day:'numeric',month:'long',year:'numeric'}) : '';
-          html += '<a href="' + escHTML(link) + '" target="_blank" class="article-card">';
-          html += '<div class="article-date">' + escHTML(d) + '</div>';
-          html += '<div class="article-title" style="font-size:1rem;">' + escHTML(title) + '</div>';
-          if (desc) html += '<p class="article-excerpt">' + escHTML(desc) + '</p>';
-          html += '<span class="article-arrow">Écouter →</span>';
-          html += '</a>';
-        }
-        grid.innerHTML = html;
-      })
-      .catch(function() {
-        grid.innerHTML = '<a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="article-card"><div class="article-title">Écouter le Relentless Podcast sur Spotify</div><span class="article-arrow">Écouter →</span></a>';
+    var rssUrl = 'https://feeds.acast.com/public/shows/6342cfdba66fae0012df9ff8';
+    var proxies = [
+      'https://corsproxy.io/?' + encodeURIComponent(rssUrl),
+      'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl),
+      'https://thingproxy.freeboard.io/fetch/' + rssUrl,
+    ];
+    function parseAndRender(xmlText) {
+      var parser = new DOMParser();
+      var xml = parser.parseFromString(xmlText, 'text/xml');
+      var items = Array.from(xml.querySelectorAll('item'));
+      if (!items.length) throw new Error('no items');
+      // Sort by pubDate descending
+      items.sort(function(a, b) {
+        var da = new Date((a.querySelector('pubDate') || {textContent:''}).textContent);
+        var db = new Date((b.querySelector('pubDate') || {textContent:''}).textContent);
+        return db - da;
       });
+      var html = '';
+      items.slice(0, 3).forEach(function(item) {
+        var title   = (item.querySelector('title')   || {textContent:''}).textContent;
+        var link    = (item.querySelector('link')    || {textContent:''}).textContent.trim()
+                      || 'https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau';
+        var pubDate = (item.querySelector('pubDate') || {textContent:''}).textContent;
+        var desc    = (item.querySelector('description') || {textContent:''}).textContent
+                        .replace(/<[^>]*>/g, '').trim().substring(0, 140);
+        if (desc.length === 140) desc += '…';
+        // Try itunes:image or channel image for thumbnail
+        var imgEl   = item.querySelector('image') || item.querySelector('[href]');
+        var thumb   = imgEl ? (imgEl.getAttribute('href') || imgEl.textContent.trim()) : '';
+        var d = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'}) : '';
+        html += '<a href="' + escHTML(link) + '" target="_blank" class="article-card" style="display:flex;flex-direction:column;">';
+        if (thumb) html += '<img src="' + escHTML(thumb) + '" alt="" style="width:100%;display:block;object-fit:cover;aspect-ratio:1/1;border-radius:2px;margin-bottom:1rem;">';
+        if (d) html += '<div class="article-date">' + escHTML(d) + '</div>';
+        html += '<div class="article-title" style="font-size:1rem;">' + escHTML(title) + '</div>';
+        if (desc) html += '<p class="article-excerpt">' + escHTML(desc) + '</p>';
+        html += '<span class="article-arrow" style="margin-top:auto;">Écouter →</span>';
+        html += '</a>';
+      });
+      grid.innerHTML = html;
+    }
+    function tryProxy(index) {
+      if (index >= proxies.length) {
+        grid.innerHTML = '<a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="article-card"><div class="article-title">Écouter le Relentless Podcast sur Spotify</div><span class="article-arrow">Écouter →</span></a>';
+        return;
+      }
+      fetch(proxies[index])
+        .then(function(r) { return r.text(); })
+        .then(function(text) {
+          if (text.trim().startsWith('{')) {
+            var json = JSON.parse(text);
+            text = json.contents || text;
+          }
+          parseAndRender(text);
+        })
+        .catch(function() { tryProxy(index + 1); });
+    }
+    tryProxy(0);
   })();
 </script>
 
