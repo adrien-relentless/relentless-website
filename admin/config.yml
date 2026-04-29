@@ -21,4 +21,4 @@ collections:
       - label: "Contenu"
         name: "body"
         widget: "markdown"
-        hint: "MISE EN FORME : **texte** = gras | *texte* = italique — TITRES : ## Grand titre | ### Sous-titre rouge — LISTES : - élément — CITATION : > texte encadré — SÉPARATEUR : --- — LIEN : [texte](url)"
+        hint: "Gras : \*\*mot\*\* | Italique : \*mot\* | Titre : \#\# Titre | Sous-titre : \#\#\# Titre | Liste : commencer par -  | Citation : commencer par > | Séparateur : taper --- | Lien : \[texte\]\(https://url.com\)"
