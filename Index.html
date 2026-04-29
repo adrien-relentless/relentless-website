@@ -1826,11 +1826,11 @@
     var grid = document.getElementById('yt-videos-grid');
     if (!grid) return;
     var rssUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
-    // Try multiple CORS proxies in sequence
+    // Try Netlify proxy first, then fallback to CORS proxies
     var proxies = [
+      '/api/yt-rss',
       'https://corsproxy.io/?' + encodeURIComponent(rssUrl),
       'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl),
-      'https://thingproxy.freeboard.io/fetch/' + rssUrl,
     ];
     function parseAndRender(xmlText) {
       var parser = new DOMParser();
@@ -1886,9 +1886,9 @@
     if (!grid) return;
     var rssUrl = 'https://feeds.acast.com/public/shows/6342cfdba66fae0012df9ff8';
     var proxies = [
+      '/api/podcast-rss',
       'https://corsproxy.io/?' + encodeURIComponent(rssUrl),
       'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl),
-      'https://thingproxy.freeboard.io/fetch/' + rssUrl,
     ];
     function parseAndRender(xmlText) {
       var parser = new DOMParser();
