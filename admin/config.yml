@@ -21,4 +21,4 @@ collections:
       - label: "Contenu"
         name: "body"
         widget: "markdown"
-        hint: "Gras : \*\*mot\*\* | Italique : \*mot\* | Titre : \#\# Titre | Sous-titre : \#\#\# Titre | Liste : commencer par -  | Citation : commencer par > | Séparateur : taper --- | Lien : \[texte\]\(https://url.com\)"
+        hint: 'Gras : ＊＊mot＊＊  |  Italique : ＊mot＊  |  Grand titre : ## Titre  |  Sous-titre rouge : ### Titre  |  Liste : ligne commençant par -  |  Citation : ligne commençant par >  |  Séparateur : ---  |  Lien : [texte](https://url.com)'
