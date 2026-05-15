@@ -6,23 +6,25 @@
   <title>{{ title }} — Relentless Strength Systems</title>
   <meta name="description" content="{{ description or 'Articles de fond sur l\'entraînement, l\'hypertrophie et la force — écrits par les coachs Relentless Strength Systems.' }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black: #0a0a0a;
-      --dark: #111111;
-      --dark2: #1a1a1a;
-      --dark3: #222222;
-      --accent: #c8102e;
-      --accent2: #e8192e;
-      --white: #f5f5f0;
-      --muted: #888880;
-      --border: rgba(255,255,255,0.08);
-      --font-display: 'Bebas Neue', sans-serif;
+      --black: #1C1C19;
+      --dark: #191916;
+      --dark2: #232320;
+      --dark3: #2C2C28;
+      --accent: #C9A96E;
+      --accent2: #D4B87A;
+      --white: #E8E2D5;
+      --muted: #9A9488;
+      --border: rgba(232,226,213,0.1);
+      --font-display: 'Barlow Condensed', sans-serif;
       --font-body: 'Barlow', sans-serif;
       --font-cond: 'Barlow Condensed', sans-serif;
     }
 
+
+    .nav-logo, h1, h2, h3, .section-title, .hero-title, .coach-name, .plan-name, .stat-value, .plan-price { font-weight: 700; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
@@ -46,7 +48,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10,10,10,0.95);
+      background: rgba(28,28,25,0.97);
       backdrop-filter: blur(10px);
       padding: 0 2rem;
       display: flex;
@@ -185,9 +187,10 @@
       <li><a href="/blog/">Articles</a></li>
       <li><a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer">Contact</a></li>
     </ul>
-    <p class="footer-copy">© 2018 – 2026 Relentless Strength Systems. Tous droits réservés.</p>
+    <p class="footer-copy">© 2018 – <span id="footer-year"></span> Relentless Strength Systems. Tous droits réservés.</p>
   </div>
 </footer>
 
+<script>var fy=document.getElementById("footer-year");if(fy)fy.textContent=new Date().getFullYear();</script>
 </body>
 </html>
