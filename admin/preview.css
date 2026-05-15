@@ -1,10 +1,10 @@
 :root {
-  --black: #0a0a0a;
-  --dark: #111111;
-  --dark2: #1a1a1a;
-  --accent: #c8102e;
-  --white: #f5f5f0;
-  --muted: #888880;
+  --black: #1C1C19;
+  --dark: #191916;
+  --dark2: #232320;
+  --accent: #C9A96E;
+  --white: #E8E2D5;
+  --muted: #9A9488;
   --border: rgba(255,255,255,0.08);
 }
 
