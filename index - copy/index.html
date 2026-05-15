@@ -362,8 +362,8 @@
 
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
     align-items: start;
   }
 
@@ -388,7 +388,7 @@
 
   .coaches-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -397,10 +397,6 @@
   .coach-card {
     background: var(--dark2);
     padding: 2rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 
   .coach-initial {
@@ -418,8 +414,8 @@
   }
 
   .coach-photo {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 250px;
+    height: 250px;
     border-radius: 2px;
     object-fit: cover;
     display: block;
@@ -455,7 +451,6 @@
     display: flex;
     gap: 0.8rem;
     margin-top: 1.2rem;
-    justify-content: center;
   }
 
   .coach-link {
@@ -523,14 +518,14 @@
 
   .offer-card {
     background: var(--dark2);
-    border: 1px solid var(--accent);
+    border: 1px solid var(--border);
     border-radius: 2px;
     padding: 2.5rem;
     position: relative;
     transition: border-color 0.2s;
   }
 
-  .offer-card:hover { border-color: rgba(200,16,46,0.7); }
+  .offer-card:hover { border-color: rgba(200,16,46,0.4); }
 
   .offer-card.featured {
     border-color: var(--accent);
@@ -1107,7 +1102,7 @@
     .nav-toggle { display: flex; }
     .hero-stats { grid-template-columns: repeat(2, 1fr); }
     .about-grid, .contact-grid, .results-intro-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .coaches-grid { grid-template-columns: repeat(3, 1fr); }
+    .coaches-grid { grid-template-columns: 1fr 1fr; }
     .coaching-includes { grid-template-columns: 1fr 1fr; }
     .offers-grid { grid-template-columns: 1fr; }
     .shop-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1174,7 +1169,7 @@
     </p>
     <p class="hero-sub" style="margin-top:-1.5rem;font-size:1rem;max-width:800px;">Coaching individualisé en powerlifting depuis 2018 — du débutant ambitieux au haut niveau international.</p>
     <div class="hero-actions">
-      <a href="#coaching" class="btn-primary">Démarrer le coaching</a>
+      <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="btn-primary">Démarrer le coaching</a>
       <a href="#coaching" class="btn-secondary">Découvrir nos offres</a>
     </div>
 
@@ -1216,10 +1211,8 @@
         <p class="about-text">
           Retrouvez-nous sur Instagram pour du contenu autour de l'entraînement, la progression, les résultats de nos athlètes, nos compétitions, podcasts et séminaires.
         </p>
-        <div style="display:flex;gap:1rem;margin-top:1.8rem;flex-wrap:wrap;justify-content:center;">
-          <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">📸 Instagram</a>
-          <a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">▶ YouTube</a>
-          <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">🎙 Spotify</a>
+        <div style="display:flex;gap:1rem;margin-top:1.8rem;flex-wrap:wrap;">
+          <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">🎙 Relentless Podcast</a>
         </div>
       </div>
 
@@ -1239,9 +1232,8 @@
   <div class="container">
     <div class="reveal">
       <p class="section-tag">Nos offres</p>
-      <!-- <h2 class="section-title">UN&nbsp;COACHING SANS COMPROMIS</h2> -->
-      <h2 class="section-title">PRÊT À PASSER AU NIVEAU SUPÉRIEUR ?</h2>
-      <p class="section-intro">Deux formules pour répondre à tes objectifs.</p>
+      <h2 class="section-title">UN&nbsp;COACHING SANS COMPROMIS</h2>
+      <p class="section-intro">Deux formules pour répondre à vos objectifs.</p>
     </div>
 
     <!-- <div class="coaching-includes reveal" style="transition-delay:0.1s"> -->
@@ -1327,12 +1319,12 @@
           <li>Protocoles complets : nutrition, récupération, compétition</li>
 		</ul>
         
-        <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 125 €/mois</a>
+        <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="width:100%;text-align:center;display:block;">Commencer – 125 €/mois</a>
       </div>
 
       <!-- SUIVI QUOTIDIEN -->
       <div class="offer-card featured">
-        <!-- offer-badge removed -->
+        <div class="offer-badge">Haut niveau</div>
         <div class="offer-type">Suivi Quotidien</div>
         <div class="offer-title">COACHING JOURNALIER</div>
         <!-- <div class="offer-coach">Par Florent Blanc</div> -->
@@ -1342,7 +1334,7 @@
         </div>
 		<div class="offer-access">Accès au groupe WhatsApp privé</div>
         <p class="offer-desc">
-          La formule optimale pour les athlètes sérieux. Un encadrement quotidien pour tirer le meilleur parti de chaque entraînement.
+          La formule optimale pour les athlètes visant le plus haut niveau. Un encadrement quotidien pour tirer le meilleur parti de chaque entraînement.
 		  <br></br>
         </p>
         <ul class="offer-features">
@@ -1356,16 +1348,86 @@
         </ul>
         <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 175 €/mois</a>
       </div>
-    </div>
-	<br>
-	
-	<div class="contact-box">
-        <p>Pour toutes questions ou conseil concernant le coaching ou les formules, n'hésite pas à prendre contacte directement par Instagram.</p>
-        <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" class="btn-secondary" style="display:block;margin-bottom:0.8rem;">Message sur Instagram</a>
-      </div>
 
+    </div>
+
+    <!-- <p style="margin-top:1.5rem;font-size:0.82rem;color:var(--muted);text-align:center;"> -->
+      <!-- Pour toute question sur les formules, <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:none;">contactez-nous directement</a>. Nous définissons ensemble la formule la mieux adaptée à votre profil. -->
+    <!-- </p> -->
   </div>
 </section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-tag">Contact & Inscription</p>
+      <h2 class="section-title">PRÊT À PASSER AU NIVEAU SUPÉRIEUR ?</h2>
+      <p class="section-intro">Si tu es un athlète sérieux et déterminé, avec des aspirations compétitives — contacte-nous. Nous définirons ensemble la formule la mieux adaptée à ton profil.</p>
+    </div>
+
+    <!-- <div class="contact-grid reveal" style="transition-delay:0.1s"> -->
+      <!-- <div> -->
+        <!-- <div class="contact-info-item"> -->
+          <!-- <div class="contact-info-icon"> -->
+            <!-- <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> -->
+          <!-- </div> -->
+          <!-- <div> -->
+            <!-- <div class="contact-info-label">Coaching en ligne</div> -->
+            <!-- <div class="contact-info-value">Partout dans le monde</div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="contact-info-item"> -->
+          <!-- <div class="contact-info-icon"> -->
+            <!-- <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 5.18 2 2 0 015 3h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.09 10.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 17z"/></svg> -->
+          <!-- </div> -->
+          <!-- <div> -->
+            <!-- <div class="contact-info-label">Instagram</div> -->
+            <!-- <div class="contact-info-value"> -->
+              <!-- <a href="https://www.instagram.com/relentless.powerlifting/" target="_blank">@relentless.powerlifting</a>  -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="contact-info-item"> -->
+          <!-- <div class="contact-info-icon"> -->
+            <!-- <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg> -->
+          <!-- </div> -->
+          <!-- <div> -->
+            <!-- <div class="contact-info-label">Podcast</div> -->
+            <!-- <div class="contact-info-value"> -->
+              <!-- <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank">Relentless Podcast – Spotify</a> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+
+        <!-- <div style="background:var(--dark2);border:1px solid var(--border);padding:1.5rem;margin-top:1rem;"> -->
+          <!-- <p style="font-family:var(--font-cond);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.8rem;">Tarifs</p> -->
+          <!-- <div class="payment-grid" style="margin-top:0;"> -->
+            <!-- <div class="payment-item"> -->
+              <!-- <span class="payment-item-price">125€/mois </span> -->
+              <!-- <span class="payment-item-label">· Suivi Hebdo ·</span> -->
+              <!-- <a href="#coaching" class="btn-secondary" style="font-size:0.75rem;padding:0.5rem 1rem;display:block;">Voir l'offre</a> -->
+            <!-- </div> -->
+            <!-- <div class="payment-item"> -->
+              <!-- <span class="payment-item-price">175€/mois</span> -->
+              <!-- <span class="payment-item-label">· Suivi Quotidien ·</span> -->
+              <!-- <a href="#coaching" class="btn-primary" style="font-size:0.75rem;padding:0.5rem 1rem;display:block;">Voir l'offre</a> -->
+            <!-- </div> -->
+          <!-- </div> -->
+        <!-- </div> -->
+      <!-- </div> -->
+
+      <div class="contact-box">
+        <h3>NOUS CONTACTER</h3>
+        <p>Utilisez le formulaire de contact sur notre site ou écrivez-nous directement sur Instagram pour toute demande de suivi ou d'informations complémentaires.</p>
+        <a href="https://www.relentlessstrengthsystems.com/https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" class="btn-primary" style="display:block;margin-bottom:1rem;">Formulaire de contact →</a>
+        <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" class="btn-secondary" style="display:block;margin-bottom:0.8rem;">Message sur Instagram</a>
+        <p style="font-size:0.8rem;color:var(--muted);margin-top:1.5rem;line-height:1.6;">Nous répondons à toutes les demandes sérieuses. Un questionnaire vous sera envoyé pour nous permettre de préparer votre programmation personnalisée.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ─── RÉSULTATS ─── -->
 <section id="results">
@@ -1377,9 +1439,7 @@
         <p style="color:var(--muted);line-height:1.7;font-size:0.95rem;">
           Nos athlètes ont représenté la France, la Belgique et l'Autriche sur les scènes nationales et internationales FFFORCE, EPF et IPF. Voici leurs résultats lors des championnats sur les 4 dernières années.
         </p>
-      </div>
-      <div class="reveal" style="transition-delay:0.1s">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2rem;">
           <div style="background:var(--dark2);padding:1.2rem;text-align:center;">
             <span style="font-family:var(--font-display);font-size:2.5rem;color:var(--accent);display:block;">3</span>
             <span style="font-family:var(--font-cond);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);">Championnats d'Europe</span>
@@ -1398,6 +1458,7 @@
           </div>
         </div>
       </div>
+      <div></div>
     </div>
 
     <div class="reveal" style="transition-delay:0.1s">
@@ -1528,67 +1589,30 @@
   <div class="container">
     <div class="reveal">
       <p class="section-tag">Contenu éducatif</p>
-      <h2 class="section-title">ARTICLES, VIDEOS & PODCASTS</h2>
+      <h2 class="section-title">ARTICLES & RESSOURCES</h2>
       <p class="section-intro">Des articles de fond sur l'entraînement, l'hypertrophie et la force — écrits par nos coachs.</p>
-    </div>
-	
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
-      <div>
-        <p class="section-tag" style="margin-bottom:0.3rem;">Articles</p>
-        <h3 style="font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.03em;color:var(--white);margin:0;">DERNIERS ARTICLES</h3>
-      </div>
-      <a href="/blog/" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">Tous les articles →</a>
     </div>
 
     <div class="articles-grid reveal" style="transition-delay:0.1s">
-      <a href="/blog/repetition-range/" class="article-card">
+      <a href="https://www.relentlessstrengthsystems.com/blog/repetition-range" target="_blank" class="article-card">
         <div class="article-date">6 Novembre 2024</div>
         <div class="article-title">REPETITION RANGE</div>
         <p class="article-excerpt">Les rep ranges plus bas favorisent un stress mécanique plus important. Comment choisir la bonne plage de répétitions selon vos objectifs ?</p>
         <span class="article-arrow">Lire l'article →</span>
       </a>
-      <a href="/blog/volume-dechet/" class="article-card">
+      <a href="https://www.relentlessstrengthsystems.com/blog/volume-dechet" target="_blank" class="article-card">
         <div class="article-date">11 Octobre 2024</div>
         <div class="article-title">VOLUME DÉCHET</div>
         <p class="article-excerpt">À propos de volume déchet et d'hypertrophie. Comment identifier et éliminer le travail contre-productif dans votre programmation ?</p>
         <span class="article-arrow">Lire l'article →</span>
       </a>
-      <a href="/blog/la-surcharge-progressive/" class="article-card">
+      <a href="https://www.relentlessstrengthsystems.com/blog/la-surcharge-progressive" target="_blank" class="article-card">
         <div class="article-date">23 Août 2024</div>
         <div class="article-title">LA SURCHARGE PROGRESSIVE</div>
         <p class="article-excerpt">Lorsque l'on parle d'hypertrophie, deux indispensables sont trop souvent mal compris. La surcharge progressive, fondement de tout progrès durable.</p>
         <span class="article-arrow">Lire l'article →</span>
       </a>
     </div>
-
-    <!-- YouTube -->
-    <div class="reveal" style="margin-top:4rem;transition-delay:0.15s">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <p class="section-tag" style="margin-bottom:0.3rem;">YouTube</p>
-          <h3 style="font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.03em;color:var(--white);margin:0;">DERNIÈRES VIDÉOS</h3>
-        </div>
-        <a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">▶ Voir la chaîne</a>
-      </div>
-      <div class="articles-grid" id="yt-videos-grid">
-        <div class="article-card" style="color:var(--muted);font-size:0.9rem;">Chargement des vidéos…</div>
-      </div>
-    </div>
-
-    <!-- Podcast -->
-    <div class="reveal" style="margin-top:4rem;transition-delay:0.2s">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
-        <div>
-          <p class="section-tag" style="margin-bottom:0.3rem;">Podcast</p>
-          <h3 style="font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.03em;color:var(--white);margin:0;">DERNIERS ÉPISODES</h3>
-        </div>
-        <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">🎙 Écouter sur Spotify</a>
-      </div>
-      <div class="articles-grid" id="podcast-grid">
-        <div class="article-card" style="color:var(--muted);font-size:0.9rem;">Chargement des épisodes…</div>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1603,7 +1627,7 @@
       <li><a href="https://www.relentlessstrengthsystems.com/store" target="_blank">Boutique</a></li>
       <li><a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer">Contact</a></li>
     </ul>
-    <p class="footer-copy">© 2018 – <span id="footer-year"></span> Relentless Strength Systems. Tous droits réservés.</p>
+    <p class="footer-copy">© 2018 – 2025 Relentless Strength Systems. Tous droits réservés.</p>
   </div>
 </footer>
 
@@ -1648,10 +1672,6 @@
     var elTraining = document.getElementById('years-training');
     if (elCoaching) elCoaching.textContent = currentYear - 2018;
     if (elTraining) elTraining.textContent = currentYear - 2014;
-
-    // Footer year
-    var footerYear = document.getElementById('footer-year');
-    if (footerYear) footerYear.textContent = new Date().getFullYear();
   })();
 
   /* ── Minimal CSV parser (handles quoted fields) ────────── */
@@ -1819,142 +1839,6 @@
     var grid = document.getElementById('coaches-grid');
     if (grid) grid.innerHTML = '<div class="coach-card"><p class="coach-bio">Impossible de charger l\'équipe (' + escHTML(err.message) + ').</p></div>';
   });
-
-  /* ── YouTube last 3 videos (RSS) ──────────────────────────── */
-  (function() {
-    var CHANNEL_ID = 'UCLaFexmmlPB3qv7SgXYq5Hg';
-    var grid = document.getElementById('yt-videos-grid');
-    if (!grid) return;
-    var rssUrl = 'https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID;
-    // Try Netlify proxy first, then fallback to CORS proxies
-    var proxies = [
-      '/api/yt-rss',
-      'https://corsproxy.io/?' + encodeURIComponent(rssUrl),
-      'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl),
-    ];
-    function parseAndRender(xmlText) {
-      var parser = new DOMParser();
-      var xml = parser.parseFromString(xmlText, 'text/xml');
-      var entries = Array.from(xml.querySelectorAll('entry'));
-      if (!entries.length) throw new Error('no entries');
-      // Sort by published date descending
-      entries.sort(function(a, b) {
-        var da = new Date((a.querySelector('published') || {textContent:''}).textContent);
-        var db = new Date((b.querySelector('published') || {textContent:''}).textContent);
-        return db - da;
-      });
-      var html = '';
-      entries.slice(0, 3).forEach(function(e) {
-        var videoId = (e.querySelector('videoId') || {textContent:''}).textContent;
-        var title   = (e.querySelector('title')   || {textContent:''}).textContent;
-        var link    = e.querySelector('link[href]') ? e.querySelector('link[href]').getAttribute('href') : 'https://www.youtube.com/@RelentlessStrengthSystems';
-        var pub     = (e.querySelector('published') || {textContent:''}).textContent.substring(0,10);
-        var thumb   = videoId ? 'https://i3.ytimg.com/vi/' + videoId + '/hqdefault.jpg' : '';
-        html += '<a href="' + escHTML(link) + '" target="_blank" class="article-card" style="display:flex;flex-direction:column;padding:0;overflow:hidden;">';
-        if (thumb) html += '<img src="' + escHTML(thumb) + '" alt="" style="width:100%;display:block;object-fit:cover;aspect-ratio:16/9;">';
-        html += '<div style="padding:1.5rem;display:flex;flex-direction:column;flex:1;">';
-        if (pub) html += '<div class="article-date">' + escHTML(pub) + '</div>';
-        html += '<div class="article-title" style="font-size:1rem;">' + escHTML(title) + '</div>';
-        html += '<span class="article-arrow" style="margin-top:auto;">Regarder →</span>';
-        html += '</div></a>';
-      });
-      grid.innerHTML = html;
-    }
-    function tryProxy(index) {
-      if (index >= proxies.length) {
-        grid.innerHTML = '<a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="article-card"><div class="article-title">Voir toutes nos vidéos sur YouTube</div><span class="article-arrow">Regarder →</span></a>';
-        return;
-      }
-      fetch(proxies[index])
-        .then(function(r) { return r.text(); })
-        .then(function(text) {
-          // allorigins wraps in JSON: {"contents":"..."}
-          if (text.trim().startsWith('{')) {
-            var json = JSON.parse(text);
-            text = json.contents || text;
-          }
-          parseAndRender(text);
-        })
-        .catch(function() { tryProxy(index + 1); });
-    }
-    tryProxy(0);
-  })();
-
-  /* ── Podcast last 3 episodes (Acast RSS) ───────────────────── */
-  (function() {
-    var grid = document.getElementById('podcast-grid');
-    if (!grid) return;
-    var rssUrl = 'https://feeds.acast.com/public/shows/6342cfdba66fae0012df9ff8';
-    var proxies = [
-      '/api/podcast-rss',
-      'https://corsproxy.io/?' + encodeURIComponent(rssUrl),
-      'https://api.allorigins.win/get?url=' + encodeURIComponent(rssUrl),
-    ];
-    function parseAndRender(xmlText) {
-      var parser = new DOMParser();
-      var xml = parser.parseFromString(xmlText, 'text/xml');
-      var items = Array.from(xml.querySelectorAll('item'));
-      if (!items.length) throw new Error('no items');
-      // Sort by pubDate descending
-      items.sort(function(a, b) {
-        var da = new Date((a.querySelector('pubDate') || {textContent:''}).textContent);
-        var db = new Date((b.querySelector('pubDate') || {textContent:''}).textContent);
-        return db - da;
-      });
-      var html = '';
-      items.slice(0, 3).forEach(function(item) {
-        var title   = (item.querySelector('title')   || {textContent:''}).textContent;
-        var link    = 'https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau';
-        var pubDate = (item.querySelector('pubDate') || {textContent:''}).textContent;
-        var desc    = (item.querySelector('description') || {textContent:''}).textContent
-                        .replace(/<[^>]*>/g, '').trim().substring(0, 140);
-        if (desc.length === 140) desc += '…';
-        // Try itunes:image or channel image for thumbnail
-        var imgEl   = item.querySelector('image') || item.querySelector('[href]');
-        var thumb   = imgEl ? (imgEl.getAttribute('href') || imgEl.textContent.trim()) : '';
-        var d = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'}) : '';
-        html += '<a href="' + escHTML(link) + '" target="_blank" class="article-card" style="display:flex;flex-direction:column;">';
-        if (thumb) html += '<img src="' + escHTML(thumb) + '" alt="" style="width:100%;display:block;object-fit:cover;aspect-ratio:1/1;border-radius:2px;margin-bottom:1rem;">';
-        if (d) html += '<div class="article-date">' + escHTML(d) + '</div>';
-        html += '<div class="article-title" style="font-size:1rem;">' + escHTML(title) + '</div>';
-        if (desc) html += '<p class="article-excerpt">' + escHTML(desc) + '</p>';
-        html += '<span class="article-arrow" style="margin-top:auto;">Écouter →</span>';
-        html += '</a>';
-      });
-      grid.innerHTML = html;
-    }
-    function tryProxy(index) {
-      if (index >= proxies.length) {
-        grid.innerHTML = '<a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="article-card"><div class="article-title">Écouter le Relentless Podcast sur Spotify</div><span class="article-arrow">Écouter →</span></a>';
-        return;
-      }
-      fetch(proxies[index])
-        .then(function(r) { return r.text(); })
-        .then(function(text) {
-          if (text.trim().startsWith('{')) {
-            var json = JSON.parse(text);
-            text = json.contents || text;
-          }
-          parseAndRender(text);
-        })
-        .catch(function() { tryProxy(index + 1); });
-    }
-    tryProxy(0);
-  })();
-</script>
-
-<!-- Netlify Identity — handles invite & password-reset tokens -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
 </script>
 </body>
 </html>
