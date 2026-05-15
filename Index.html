@@ -1912,49 +1912,5 @@
         // Try itunes:image or channel image for thumbnail
         var imgEl   = item.querySelector('image') || item.querySelector('[href]');
         var thumb   = imgEl ? (imgEl.getAttribute('href') || imgEl.textContent.trim()) : '';
-        var d = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', {day:'numeric', month:'long', year:'numeric'}) : '';
-        html += '<a href="' + escHTML(link) + '" target="_blank" class="article-card" style="display:flex;flex-direction:column;">';
-        if (thumb) html += '<img src="' + escHTML(thumb) + '" alt="" style="width:100%;display:block;object-fit:cover;aspect-ratio:1/1;border-radius:2px;margin-bottom:1rem;">';
-        if (d) html += '<div class="article-date">' + escHTML(d) + '</div>';
-        html += '<div class="article-title" style="font-size:1rem;">' + escHTML(title) + '</div>';
-        if (desc) html += '<p class="article-excerpt">' + escHTML(desc) + '</p>';
-        html += '<span class="article-arrow" style="margin-top:auto;">Écouter →</span>';
-        html += '</a>';
-      });
-      grid.innerHTML = html;
-    }
-    function tryProxy(index) {
-      if (index >= proxies.length) {
-        grid.innerHTML = '<a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="article-card"><div class="article-title">Écouter le Relentless Podcast sur Spotify</div><span class="article-arrow">Écouter →</span></a>';
-        return;
-      }
-      fetch(proxies[index])
-        .then(function(r) { return r.text(); })
-        .then(function(text) {
-          if (text.trim().startsWith('{')) {
-            var json = JSON.parse(text);
-            text = json.contents || text;
-          }
-          parseAndRender(text);
-        })
-        .catch(function() { tryProxy(index + 1); });
-    }
-    tryProxy(0);
-  })();
-</script>
-
-<!-- Netlify Identity — handles invite & password-reset tokens -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function(user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function() {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
-</body>
-</html>
+        var d = pubDate ? new Date(pubDate).toLocaleDateString('fr-FR', {day:'numeric'
+<!-- deploy test -->
