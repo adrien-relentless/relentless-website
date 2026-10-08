@@ -14,8 +14,8 @@
   status = 200
   force = true
 
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Frame-Options = "SAMEORIGIN"
-    X-XSS-Protection = "1; mode=block"
+# Anciennes URLs d'articles (Strikingly + ancien blog) -> page d'accueil
+[[redirects]]
+  from = "/blog/*"
+  to = "/"
+  status = 301
