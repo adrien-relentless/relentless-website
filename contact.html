@@ -159,6 +159,20 @@
     .nav-shop-mobile { display: inline-flex; align-items: center; margin-left: auto; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1.5px solid var(--white); padding: 0.4rem 0.8rem; border-radius: 2px; }
   }
   .nav-links a.nav-relentless { font-weight: 700; }
+  /* Mobile : bouton rouge « Nous contacter » (« Contact » sur petit écran) à droite de Boutique */
+  .nav-contact-mobile { display: none; }
+  @media (max-width: 900px) {
+    .nav-shop-mobile { margin-right: 0.5rem; }
+    .nav-contact-mobile { display: inline-flex; align-items: center; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--accent); border: 1.5px solid var(--accent); text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 2px; white-space: nowrap; }
+    .nav-contact-mobile:hover { background: var(--accent2); border-color: var(--accent2); }
+    .ncm-short { display: none; }
+  }
+  @media (max-width: 480px) { .ncm-long { display: none; } .ncm-short { display: inline; } }
+  @media (max-width: 380px) {
+    .nav-shop-mobile, .nav-contact-mobile { padding: 0.35rem 0.55rem; font-size: 0.72rem; letter-spacing: 0.08em; }
+    .nav-shop-mobile { margin-right: 0.35rem; }
+    .nav-contact-mobile { margin-right: 0.7rem; }
+  }
 </style>
 </head>
 <body>
@@ -178,6 +192,7 @@
     <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
   </ul>
   <a href="/boutique/" class="nav-shop-mobile">Boutique</a>
+  <a href="/rejoindre/" class="nav-contact-mobile"><span class="ncm-long">Nous contacter</span><span class="ncm-short">Contact</span></a>
   <button class="nav-toggle" type="button" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>

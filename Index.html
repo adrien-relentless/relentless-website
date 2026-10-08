@@ -1141,6 +1141,26 @@ permalink: /index.html
   .motto-quote { margin: 0 0 0.9rem; color: var(--white); font-family: var(--font-cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 1.45rem; line-height: 1.35; }
   .motto-text { margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.6; }
   @media (max-width: 560px) { .motto { margin-top: 2.5rem; padding: 1.8rem 1.3rem; } .motto-quote { font-size: 1.2rem; } }
+  /* Mobile : bouton rouge « Nous contacter » (« Contact » sur petit écran) à droite de Boutique */
+  .nav-contact-mobile { display: none; }
+  @media (max-width: 900px) {
+    .nav-shop-mobile { margin-right: 0.5rem; }
+    .nav-contact-mobile { display: inline-flex; align-items: center; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--accent); border: 1.5px solid var(--accent); text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 2px; white-space: nowrap; }
+    .nav-contact-mobile:hover { background: var(--accent2); border-color: var(--accent2); }
+    .ncm-short { display: none; }
+  }
+  @media (max-width: 480px) { .ncm-long { display: none; } .ncm-short { display: inline; } }
+  @media (max-width: 380px) {
+    .nav-shop-mobile, .nav-contact-mobile { padding: 0.35rem 0.55rem; font-size: 0.72rem; letter-spacing: 0.08em; }
+    .nav-shop-mobile { margin-right: 0.35rem; }
+    .nav-contact-mobile { margin-right: 0.7rem; }
+  }
+  /* Tableau des offres entre 561 et 760 px : textes resserrés pour ne pas dépasser */
+  @media (min-width: 561px) and (max-width: 760px) {
+    .offers-table th, .offers-table td { padding: 0.8rem 0.7rem; }
+    .ot-type { font-size: 0.95rem; letter-spacing: 0.06em; padding: 0.3rem 0.5rem; }
+    .ot-btn { white-space: normal; font-size: 0.8rem; padding: 0.85rem 0.5rem; line-height: 1.25; }
+  }
 </style>
 </head>
 <body>
@@ -1164,6 +1184,7 @@ permalink: /index.html
     <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
   </ul>
   <a href="/boutique/" class="nav-shop-mobile">Boutique</a>
+  <a href="/rejoindre/" class="nav-contact-mobile"><span class="ncm-long">Nous contacter</span><span class="ncm-short">Contact</span></a>
   <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
     <span></span><span></span><span></span>
   </div>
@@ -1337,7 +1358,7 @@ permalink: /index.html
           <tr><td class="ot-label">Analyse technique vidéo approfondie</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
           <tr><td class="ot-label">Plan de match adapté aux objectifs pour chaque échéance de compétition</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
           <tr><td class="ot-label">Accès au groupe WhatsApp privé</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
-          <tr class="ot-diff"><td class="ot-label">Fréquence des retours</td><td class="ot-cell">x1 par semaine</td><td class="ot-cell">Quotidiennement</td></tr>
+          <tr class="ot-diff"><td class="ot-label">Fréquence des retours</td><td class="ot-cell">x1 par semaine</td><td class="ot-cell">Quotidienne</td></tr>
         </tbody>
         <tfoot>
           <tr>
@@ -1369,7 +1390,7 @@ permalink: /index.html
         <div class="om-plan">
           <span class="ot-type">Suivi journalier</span>
           <span class="om-freq-lbl">Fréquence des retours</span>
-          <span class="om-freq">Quotidiennement</span>
+          <span class="om-freq">Quotidienne</span>
           <a href="/contact/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">175 €/mois</span></a>
         </div>
       </div>
