@@ -8,6 +8,7 @@
 <link rel="icon" type="image/png" href="/data/pics/logo.png">
 <link rel="stylesheet" href="/data/contact-form.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -49,6 +50,35 @@
   }
 
   .intro { color: var(--muted); text-align: center; font-size: 0.95rem; margin-bottom: 2rem; }
+  /* ═══════════ STYLE « Plateau de compétition » (adopté le 08/10/2026 — même thème que l'accueil) ═══════════ */
+  :root {
+    --black: #0d0f12; --dark: #111419; --dark2: #161a20; --dark3: #20252d;
+    --accent: #e0212f; --accent2: #f03a47; --white: #f2f1ed; --muted: #8b919b;
+    --border: #262b33;
+    --font-display: 'Archivo', sans-serif;
+    --font-body: 'Archivo', sans-serif;
+    --font-cond: 'JetBrains Mono', monospace;
+  }
+  body { font-family: var(--font-body); background: var(--black); }
+  h1 { font-weight: 900 !important; text-transform: uppercase; letter-spacing: -0.025em !important; line-height: 0.95 !important; }
+  nav { background: rgba(13,15,18,0.94); border-bottom-color: var(--border); }
+  .nav-links a, .nav-brand-tagline { font-family: var(--font-cond); font-size: 0.78rem; letter-spacing: 0.06em; }
+  .nav-links a.nav-relentless { font-weight: 700; }
+  .nav-links a.nav-shop, .nav-shop-mobile { border-radius: 0; border-width: 1px; }
+  .nav-cta, .nav-contact-mobile { border-radius: 0 !important; font-family: var(--font-cond) !important; }
+  .section-tag { font-family: var(--font-cond); font-weight: 500; letter-spacing: 0.14em; font-size: 0.78rem; }
+  .section-tag::before { content: '//'; width: auto; height: auto; background: none; }
+  body .btn-primary, body .btn-secondary { font-family: var(--font-body); font-weight: 800; letter-spacing: 0.06em; border-radius: 0; }
+  .footer-links a { font-family: var(--font-cond); }
+  /* Boutique */
+  body .shop-group-title, body .order-modal-box h3 { font-weight: 900; letter-spacing: -0.01em; text-transform: uppercase; }
+  body .product-placeholder b, body .om-price, body .product-price { font-weight: 800; letter-spacing: -0.01em; }
+  body .product-placeholder b { font-size: 1.7rem; }
+  body .product-card { border-radius: 0; }
+  body .product-card.is-featured { border-color: var(--accent); }
+  body .product-badge, body .order-modal-box, body .order-modal-box input, body .order-modal-box select, body .order-modal-box textarea { border-radius: 0; }
+  /* Formulaire de contact */
+  body .form-card, body .form-card input, body .form-card textarea, body .choice span { border-radius: 0; }
 </style>
 </head>
 <body>
