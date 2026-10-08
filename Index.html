@@ -1121,8 +1121,6 @@ permalink: /index.html
   /* ─── HERO VIDÉO ─── */
   .hero-video { position: absolute; inset: 0; overflow: hidden; background: var(--black); }
   .hero-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .hero-video img.hero-anim { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero-video.is-anim::after { background: radial-gradient(ellipse at center, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.7) 100%); }
   .hero-video::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,10,10,0.62) 0%, rgba(10,10,10,0.88) 100%); }
   #hero .hero-sub { color: rgba(245,245,240,0.78); text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
   h1.hero-title { font-size: clamp(4.5rem, 14vw, 12rem); line-height: 0.85; margin-bottom: 2rem; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
@@ -1137,6 +1135,12 @@ permalink: /index.html
   #hero { min-height: 100vh; }
   #hero .hero-actions { margin-top: 0.5rem; }
   @media (max-width: 560px) { .hero-after { padding: 2.5rem 1.2rem 0.5rem; } }
+  /* Encadré citation (sous les chiffres, juste avant « À propos ») */
+  .hero-after .hero-stats { margin-top: 0; }
+  .motto { width: 100%; max-width: 880px; margin: 3.5rem auto 1rem; text-align: center; padding: 2.6rem 2.5rem; border: 1px solid rgba(200,16,46,0.6); background: linear-gradient(180deg, rgba(200,16,46,0.07), transparent); }
+  .motto-quote { margin: 0 0 0.9rem; color: var(--white); font-family: var(--font-cond); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 1.45rem; line-height: 1.35; }
+  .motto-text { margin: 0; color: var(--muted); font-size: 0.98rem; line-height: 1.6; }
+  @media (max-width: 560px) { .motto { margin-top: 2.5rem; padding: 1.8rem 1.3rem; } .motto-quote { font-size: 1.2rem; } }
 </style>
 </head>
 <body>
@@ -1167,7 +1171,7 @@ permalink: /index.html
 
 <!-- ─── HERO ─── -->
 <section id="hero">
-  <!-- Vidéo de fond : montage des performances (data/hero/). Ordinateur : 3 colonnes (hero-desktop.mp4). Téléphone : les performances une par une (hero-mobile.mp4), et si le téléphone bloque la vidéo (mode économie d'énergie), le script affiche à la place l'image animée hero-mobile.webp. -->
+  <!-- Vidéo de fond : montage des performances (data/hero/). Ordinateur : 3 colonnes (hero-desktop.mp4). Téléphone : les performances une par une (hero-mobile.mp4). Si le téléphone bloque la lecture auto (mode économie d'énergie), l'image fixe reste affichée et la vidéo démarre au premier contact. -->
   <div class="hero-video" aria-hidden="true">
     <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture poster="/data/hero/hero-poster-desktop.jpg">
       <source src="/data/hero/hero-mobile.mp4" type="video/mp4" media="(max-width: 699px), (max-aspect-ratio: 3/4)">
@@ -1187,10 +1191,6 @@ permalink: /index.html
 <!-- Sous le hero vidéo : citation, présentation et chiffres clés -->
 <div class="hero-after">
   <div class="hero-inner">
-    <p class="hero-sub">
-      <strong>« Ardeur furieuse et opiniâtre dans la lutte, la poursuite et l'effort. »</strong>
-    </p>
-    <p class="hero-sub" style="margin-top:-1.5rem;font-size:1rem;max-width:800px;">Coaching individualisé en powerlifting depuis 2018 — du débutant ambitieux au haut niveau international.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="hero-stat-num" id="stat-years">6+</span>
@@ -1208,6 +1208,10 @@ permalink: /index.html
         <span class="hero-stat-num">IPF</span>
         <span class="hero-stat-label">Niveau mondial</span>
       </div>
+    </div>
+    <div class="motto">
+      <p class="motto-quote">« Ardeur furieuse et opiniâtre dans la lutte, la poursuite et l'effort. »</p>
+      <p class="motto-text">Coaching individualisé en powerlifting depuis 2018 — du débutant ambitieux au haut niveau international.</p>
     </div>
   </div>
 </div>
@@ -1829,32 +1833,19 @@ permalink: /index.html
 </script>
 
 <script>
-  /* ── Vidéo du hero : lecture automatique. Sur téléphone, si la vidéo est bloquée (mode économie d'énergie…),
-        on la remplace par l'image animée hero-mobile.webp, qui tourne toujours. ── */
+  /* ── Vidéo du hero : lecture automatique ; si le téléphone la bloque (mode économie d'énergie…),
+        l'image fixe reste affichée et la vidéo démarre au premier contact avec la page. ── */
   (function () {
     var v = document.getElementById('heroVideo');
     if (!v) return;
-    var box = v.parentNode;
-    var mobile = window.matchMedia('(max-width: 699px), (max-aspect-ratio: 3/4)').matches;
-    if (mobile) v.poster = '/data/hero/hero-poster-mobile.jpg';
+    if (window.matchMedia('(max-width: 699px), (max-aspect-ratio: 3/4)').matches) v.poster = '/data/hero/hero-poster-mobile.jpg';
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); return; }
     v.muted = true; v.defaultMuted = true;
-    var swapped = false;
-    function useAnimatedImage() {
-      if (!mobile || swapped || !v.paused) return;
-      swapped = true;
-      var img = new Image();
-      img.className = 'hero-anim'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
-      img.onload = function () { box.classList.add('is-anim'); v.pause(); v.style.display = 'none'; };
-      img.src = '/data/hero/hero-mobile.webp';
-      box.insertBefore(img, v);
-    }
-    function tryPlay() { if (swapped) return; var p = v.play(); if (p && p.catch) p.catch(useAnimatedImage); }
+    function tryPlay() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
     function onGesture() { tryPlay(); ['touchstart', 'click', 'scroll'].forEach(function (e) { window.removeEventListener(e, onGesture); }); }
     ['touchstart', 'click', 'scroll'].forEach(function (e) { window.addEventListener(e, onGesture, { passive: true }); });
     document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
     tryPlay();
-    setTimeout(useAnimatedImage, 3000); // filet de sécurité : toujours à l'arrêt après 3 s → image animée
   })();
 </script>
 </body>
