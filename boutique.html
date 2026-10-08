@@ -156,6 +156,15 @@
   .shop-page .btn-primary { width: auto; margin-top: 0; display: inline-block; text-decoration: none; }
   .shop-page .product-btn { width: 100%; display: block; }
   .shop-page .intro { max-width: 760px; }
+  /* Bouton Boutique (contour blanc) + accès boutique visible sur mobile */
+  .nav-links a.nav-shop { color: var(--white); border: 1.5px solid var(--white); padding: 0.45rem 1.1rem; border-radius: 2px; transition: border-color 0.2s; }
+  .nav-links a.nav-shop:hover { color: var(--white); border-color: var(--accent); }
+  .nav-shop-mobile { display: none; }
+  @media (max-width: 900px) {
+    .nav-links a.nav-shop { border: 0; padding: 0; }
+    .nav-shop-mobile { display: inline-flex; align-items: center; margin-left: auto; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1.5px solid var(--white); padding: 0.4rem 0.8rem; border-radius: 2px; }
+  }
+  .nav-links a.nav-relentless { font-weight: 700; }
 </style>
 </head>
 <body>
@@ -167,13 +176,14 @@
     <span class="nav-brand-tagline">Powerlifting Coaching<span> .</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="/#about">À propos</a></li>
+    <li><a href="/#about" class="nav-relentless">RELENTLESS</a></li>
     <li><a href="/#coaching">Coaching</a></li>
     <li><a href="/#results">Résultats</a></li>
-    <li><a href="/boutique/" aria-current="page" style="color:var(--white);">Boutique</a></li>
     <li><a href="/#contenu">Médias</a></li>
+    <li><a href="/boutique/" class="nav-shop" aria-current="page">Boutique</a></li>
     <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
   </ul>
+  <a href="/boutique/" class="nav-shop-mobile" aria-current="page">Boutique</a>
   <button class="nav-toggle" type="button" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
     <span></span><span></span><span></span>
   </button>
@@ -183,7 +193,7 @@
   <div class="container">
     <p class="section-tag">Boutique</p>
     <h1>VÊTEMENTS &amp; RESSOURCES</h1>
-    <p class="intro">Nos ebooks pour progresser et les vêtements pour porter les couleurs Relentless. Paiement sécurisé via PayPal.</p>
+    <p class="intro">Nos ebooks pour progresser et les vêtements pour porter les couleurs Relentless.</p>
 
     <!-- Produits générés à partir de data/boutique.csv -->
     <div id="shop">

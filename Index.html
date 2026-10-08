@@ -1101,9 +1101,28 @@ permalink: /index.html
     opacity: 1;
     transform: none;
   }
+  /* Bouton Boutique (contour blanc) + accès boutique visible sur mobile */
+  .nav-links a.nav-shop { color: var(--white); border: 1.5px solid var(--white); padding: 0.45rem 1.1rem; border-radius: 2px; transition: border-color 0.2s; }
+  .nav-links a.nav-shop:hover { color: var(--white); border-color: var(--accent); }
+  .nav-shop-mobile { display: none; }
+  @media (max-width: 900px) {
+    .nav-links a.nav-shop { border: 0; padding: 0; }
+    .nav-shop-mobile { display: inline-flex; align-items: center; margin-left: auto; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1.5px solid var(--white); padding: 0.4rem 0.8rem; border-radius: 2px; }
+  }
+  .nav-links a.nav-relentless { font-weight: 700; }
+  /* Icônes réseaux sociaux (sprite en haut du <body>) */
+  .ico { width: 1.15em; height: 1.15em; fill: currentColor; vertical-align: -0.2em; margin-right: 0.55em; flex-shrink: 0; }
+  .coach-link .ico { width: 1.35em; height: 1.35em; vertical-align: -0.35em; margin-right: 0.45em; }
+  .coach-handle { text-transform: none; letter-spacing: 0.04em; font-size: 0.85rem; }
+  /* Couleurs officielles des marques (Instagram = dégradé défini dans le sprite) */
+  a[href*="instagram"] .ico { fill: url(#ig-grad); }
+  a[href*="youtube"] .ico { fill: #FF0000; }
+  a[href*="spotify"] .ico { fill: #1ED760; }
 </style>
 </head>
 <body>
+<!-- Icônes réseaux (Simple Icons, licence CC0) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><radialGradient id="ig-grad" cx="0.3" cy="1.07" r="1.2"><stop offset="0" stop-color="#FDF497"/><stop offset="0.1" stop-color="#FDF497"/><stop offset="0.5" stop-color="#FD5949"/><stop offset="0.68" stop-color="#D6249F"/><stop offset="1" stop-color="#285AEB"/></radialGradient></defs><symbol id="i-instagram" viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol><symbol id="i-youtube" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></symbol><symbol id="i-spotify" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></symbol></svg>
 
 <!-- ─── NAVIGATION ─── -->
 <nav id="navbar">
@@ -1114,13 +1133,14 @@ permalink: /index.html
     <!-- <span class="nav-brand-tagline">Powerlifting Coaching<span> .</span></span> -->
   </div>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#about">À propos</a></li>
+    <li><a href="#about" class="nav-relentless">RELENTLESS</a></li>
     <li><a href="#coaching">Coaching</a></li>
     <li><a href="#results">Résultats</a></li>
-    <li><a href="/boutique/">Boutique</a></li>
     <li><a href="#contenu">Médias</a></li>
+    <li><a href="/boutique/" class="nav-shop">Boutique</a></li>
     <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
   </ul>
+  <a href="/boutique/" class="nav-shop-mobile">Boutique</a>
   <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
     <span></span><span></span><span></span>
   </div>
@@ -1179,9 +1199,9 @@ permalink: /index.html
           Retrouvez-nous sur Instagram pour du contenu autour de l'entraînement, la progression, les résultats de nos athlètes, nos compétitions, podcasts et séminaires.
         </p>
         <div style="display:flex;gap:1rem;margin-top:1.8rem;flex-wrap:wrap;justify-content:center;">
-          <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">📸 Instagram</a>
-          <a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">▶ YouTube</a>
-          <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">🎙 Spotify</a>
+          <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;"><svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a>
+          <a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;"><svg class="ico" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a>
+          <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;"><svg class="ico" aria-hidden="true"><use href="#i-spotify"/></svg>Spotify</a>
         </div>
       </div>
 
@@ -1398,7 +1418,7 @@ permalink: /index.html
           <p class="section-tag" style="margin-bottom:0.3rem;">YouTube</p>
           <h3 style="font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.03em;color:var(--white);margin:0;">DERNIÈRES VIDÉOS</h3>
         </div>
-        <a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">▶ Voir la chaîne</a>
+        <a href="https://www.youtube.com/@RelentlessStrengthSystems" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;"><svg class="ico" aria-hidden="true"><use href="#i-youtube"/></svg>Voir la chaîne</a>
       </div>
       <div class="articles-grid" id="yt-videos-grid">
         <div class="article-card" style="color:var(--muted);font-size:0.9rem;">Chargement des vidéos…</div>
@@ -1412,7 +1432,7 @@ permalink: /index.html
           <p class="section-tag" style="margin-bottom:0.3rem;">Podcast</p>
           <h3 style="font-family:var(--font-display);font-size:1.6rem;letter-spacing:0.03em;color:var(--white);margin:0;">DERNIERS ÉPISODES</h3>
         </div>
-        <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;">🎙 Écouter sur Spotify</a>
+        <a href="https://open.spotify.com/show/5PyjRkwx6FBTu5a7XCPnau" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.7rem 1.4rem;"><svg class="ico" aria-hidden="true"><use href="#i-spotify"/></svg>Écouter sur Spotify</a>
       </div>
       <div class="articles-grid" id="podcast-grid">
         <div class="article-card" style="color:var(--muted);font-size:0.9rem;">Chargement des épisodes…</div>
@@ -1605,8 +1625,13 @@ permalink: /index.html
           '" onerror="var p=this.parentNode;this.remove();var d=document.createElement(\'div\');d.className=\'coach-initial\';d.textContent=' +
           JSON.stringify(c.initials || '') + ';p.insertBefore(d,p.firstChild);">'
         : '<div class="coach-initial">' + escHTML(c.initials || '') + '</div>';
+      // Affiche le @compte tiré de l'adresse Instagram (ex. .../flo.blnc/ -> @flo.blnc)
+      function instaHandle(url) {
+        var m = String(url).match(/instagram\.com\/([^\/?#]+)/i);
+        return m ? '@' + m[1] : 'Instagram';
+      }
       var instaLink = c.instagram
-        ? '<div class="coach-links"><a href="' + escHTML(c.instagram) + '" target="_blank" rel="noopener" class="coach-link">Instagram →</a></div>'
+        ? '<div class="coach-links"><a href="' + escHTML(c.instagram) + '" target="_blank" rel="noopener" class="coach-link"><svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg><span class="coach-handle">' + escHTML(instaHandle(c.instagram)) + '</span></a></div>'
         : '';
       return '<div class="coach-card">' +
         avatar +
