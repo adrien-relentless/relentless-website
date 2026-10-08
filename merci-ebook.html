@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci pour ton achat – Relentless Strength Systems</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/data/pics/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<!--
+  Page de retour après un achat d'ebook sur Payhip.
+  À renseigner dans Payhip : Account > Settings > Advanced Settings > Checkout Settings
+  "Redirect customers to a particular webpage..." -> https://www.relentlessstrengthsystems.com/merci-ebook/
+  Si la page a été ouverte en fenêtre séparée depuis /boutique/, elle prévient la boutique puis se ferme.
+  Sinon (ouverte en onglet normal), elle affiche simplement le message de confirmation.
+-->
+<style>
+  :root { --black: #0a0a0a; --dark2: #1a1a1a; --accent: #c8102e; --accent2: #e8192e; --white: #f5f5f0; --muted: #888880; --border: rgba(255,255,255,0.08); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Barlow', sans-serif; background: var(--black); color: var(--white); line-height: 1.6; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1.2rem; }
+  .box { max-width: 520px; width: 100%; text-align: center; background: var(--dark2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem 1.8rem; }
+  .logo { width: 72px; height: auto; margin: 0 auto 1.2rem; display: block; filter: brightness(0) invert(1); }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 2.6rem; letter-spacing: 0.03em; line-height: 1; margin-bottom: 1rem; }
+  p { color: var(--muted); margin-bottom: 0.6rem; }
+  p strong { color: var(--white); font-weight: 500; }
+  .btn { display: inline-block; margin-top: 1.4rem; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; background: var(--accent); color: var(--white); text-decoration: none; padding: 0.9rem 1.8rem; border-radius: 2px; }
+  .btn:hover { background: var(--accent2); }
+</style>
+</head>
+<body>
+<main class="box">
+  <img class="logo" src="/data/pics/logo.png" alt="Relentless Strength Systems">
+  <h1>MERCI POUR TON ACHAT !</h1>
+  <p><strong>Ton ebook t'a été envoyé par email.</strong></p>
+  <p>Si tu ne le vois pas d'ici quelques minutes, pense à vérifier tes spams.</p>
+  <a class="btn" href="/boutique/">Retour à la boutique</a>
+</main>
+<script>
+  (function () {
+    try {
+      if (window.opener && !window.opener.closed) {
+        window.opener.postMessage({ type: 'relentless-achat-ebook' }, window.location.origin);
+        window.opener.focus();
+        setTimeout(function () { window.close(); }, 300);
+      }
+    } catch (e) { /* la page reste affichée avec le message de confirmation */ }
+  })();
+</script>
+</body>
+</html>

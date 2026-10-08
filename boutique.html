@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Démarrer ton coaching – Relentless Strength Systems</title>
-<meta name="description" content="Démarre ton coaching powerlifting avec Relentless Strength Systems : remplis le questionnaire de prise de contact.">
+<title>Boutique – Relentless Strength Systems</title>
+<meta name="description" content="Ebooks et vêtements Relentless Strength Systems : ressources pour les sports de force et vêtements aux couleurs du club.">
 <link rel="icon" type="image/png" href="/data/pics/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="/data/contact-form.css">
+<link rel="stylesheet" href="/data/boutique.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -150,6 +150,12 @@
     .footer-inner { flex-direction: column; align-items: flex-start; }
     .footer-links { flex-wrap: wrap; gap: 0.8rem 1.5rem; }
   }
+
+  /* ─── Page boutique ─── */
+  .shop-page .container { max-width: 1200px; }
+  .shop-page .btn-primary { width: auto; margin-top: 0; display: inline-block; text-decoration: none; }
+  .shop-page .product-btn { width: 100%; display: block; }
+  .shop-page .intro { max-width: 760px; }
 </style>
 </head>
 <body>
@@ -164,7 +170,7 @@
     <li><a href="/#about">À propos</a></li>
     <li><a href="/#coaching">Coaching</a></li>
     <li><a href="/#results">Résultats</a></li>
-    <li><a href="/boutique/">Boutique</a></li>
+    <li><a href="/boutique/" aria-current="page" style="color:var(--white);">Boutique</a></li>
     <li><a href="/#contenu">Médias</a></li>
     <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
   </ul>
@@ -173,14 +179,16 @@
   </button>
 </nav>
 
-<main class="contact-page">
+<main class="contact-page shop-page">
   <div class="container">
-    <h1>DÉMARRER TON COACHING</h1>
-    <p class="intro">Remplis ce questionnaire : il est transmis directement aux trois coachs. Nous revenons vers toi sur Instagram ou WhatsApp pour définir ensemble la formule et le coach les plus adaptés.</p>
+    <p class="section-tag">Boutique</p>
+    <h1>VÊTEMENTS &amp; RESSOURCES</h1>
+    <p class="intro">Nos ebooks pour progresser et les vêtements pour porter les couleurs Relentless. Paiement sécurisé via PayPal.</p>
 
-    <div id="contact-form"></div>
-
-    <p class="contact-alt">Une question avant de te lancer ? <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" rel="noopener">Écris-nous sur Instagram</a></p>
+    <!-- Produits générés à partir de data/boutique.csv -->
+    <div id="shop">
+      <p style="color:var(--muted);font-size:0.9rem;">Chargement de la boutique…</p>
+    </div>
   </div>
 </main>
 
@@ -199,6 +207,6 @@
 </footer>
 
 <script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
-<script src="/data/contact-form.js"></script>
+<script src="/data/boutique.js"></script>
 </body>
 </html>

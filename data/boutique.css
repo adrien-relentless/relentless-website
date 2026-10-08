@@ -1,0 +1,163 @@
+/* Boutique Relentless — utilisé par /boutique/ (boutique.html) */
+
+/* Bouton principal (même style que la page d'accueil) */
+.btn-primary { font-family: var(--font-cond); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; background: var(--accent); color: var(--white); padding: 1rem 2rem; text-decoration: none; border-radius: 2px; transition: background 0.2s; display: inline-block; }
+.btn-primary:hover { background: var(--accent2); }
+/* ─── BOUTIQUE ─── */
+#boutique { background: var(--black); }
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  transition: border-color 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.product-card:hover {
+  border-color: rgba(200,16,46,0.35);
+  transform: translateY(-2px);
+}
+
+.product-img {
+  aspect-ratio: 1;
+  background: var(--dark3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.product-badge {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  background: var(--accent);
+  font-family: var(--font-cond);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  color: var(--white);
+}
+
+.product-badge.sold-out {
+  background: var(--dark3);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.product-info {
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.product-name {
+  font-family: var(--font-cond);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.product-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--white);
+}
+
+/* Boutique générée depuis data/boutique.csv */
+.shop-group { margin-bottom: 3.5rem; }
+.shop-group:last-child { margin-bottom: 0; }
+.shop-group-title { font-family: var(--font-display); font-weight: 400; font-size: 1.8rem; letter-spacing: 0.04em; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.8rem; }
+.shop-group-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+div.product-card { display: flex; flex-direction: column; }
+.product-img img { color: transparent; } /* masque le texte alternatif tant que la photo n'est pas là */
+div.product-card:hover { transform: none; }
+.product-placeholder { text-align: center; padding: 1.5rem; }
+.product-placeholder b { display: block; font-family: var(--font-display); font-weight: 400; font-size: 2.6rem; color: var(--accent); line-height: 1; }
+.product-placeholder span { display: block; font-family: var(--font-cond); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.5rem; }
+.product-info { display: flex; flex-direction: column; flex: 1; }
+.product-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 0.8rem; }
+.product-price { font-size: 1.5rem; margin-top: auto; margin-bottom: 0.8rem; } /* prix + bouton calés en bas : alignés d'une carte à l'autre */
+.product-buy { display: flex; flex-direction: column; gap: 0.5rem; }
+.product-options { display: flex; gap: 0.5rem; }
+.product-options select {
+  flex: 1; min-width: 0; background: var(--dark); color: var(--white); border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 2px; padding: 0.55rem 0.5rem; font-family: var(--font-body); font-size: 0.85rem; color-scheme: dark;
+}
+.product-options select:focus { outline: none; border-color: var(--accent); }
+.product-btn { width: 100%; border: 0; cursor: pointer; text-align: center; padding: 0.85rem 0.5rem; font-size: 0.82rem; }
+.product-btn[disabled], .product-btn.is-disabled { background: var(--dark3); color: var(--muted); cursor: not-allowed; transform: none; pointer-events: none; }
+.shop-note { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); text-align: center; }
+
+@media (max-width: 900px) {
+  .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+  .product-info { padding: 0.8rem; }
+  .product-desc { display: none; }
+  .product-options { flex-direction: column; }
+  .product-btn { font-size: 0.72rem; letter-spacing: 0.06em; }
+  .product-placeholder { padding: 0.8rem; }
+  .product-placeholder b { font-size: 1.6rem; }
+  .product-placeholder span { font-size: 0.62rem; }
+}
+
+/* Confirmation après achat d'un ebook */
+.shop-thanks { background: rgba(200,16,46,0.12); border: 1px solid var(--accent); border-radius: 2px; padding: 1rem 1.2rem; margin-bottom: 2rem; font-size: 0.95rem; color: var(--white); }
+.shop-thanks strong { color: var(--white); margin-right: 0.3rem; }
+
+/* Produit mis en avant (colonne "mise_en_avant" du CSV) */
+.product-card.is-featured { border: 2px solid var(--accent); box-shadow: 0 0 0 1px rgba(200,16,46,0.25), 0 10px 30px rgba(200,16,46,0.15); }
+.product-card.is-featured .product-badge { top: 0.8rem; left: 0.8rem; font-size: 0.72rem; padding: 0.35rem 0.75rem; }
+
+/* Fenêtre de commande (vêtements) */
+.order-modal[hidden] { display: none; }
+.order-modal { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.order-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.8); }
+.order-modal-box { position: relative; width: 100%; max-width: 520px; max-height: calc(100vh - 2rem); overflow-y: auto; background: var(--dark2); border: 1px solid var(--border); border-top: 3px solid var(--accent); border-radius: 2px; padding: 1.6rem 1.6rem 1.3rem; }
+.order-modal-box h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.8rem; letter-spacing: 0.04em; margin-bottom: 1rem; }
+.order-modal-close { position: absolute; top: 0.6rem; right: 0.8rem; background: none; border: 0; color: var(--muted); font-size: 1.8rem; line-height: 1; cursor: pointer; }
+.order-modal-close:hover { color: var(--white); }
+.om-recap { display: flex; gap: 1rem; align-items: center; padding: 0.7rem; background: var(--dark); border: 1px solid var(--border); margin-bottom: 0.4rem; }
+.om-recap img { width: 56px; height: 56px; object-fit: cover; border-radius: 2px; flex-shrink: 0; }
+.om-name { font-family: var(--font-cond); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.om-price { font-family: var(--font-display); font-size: 1.3rem; }
+.om-section { font-family: var(--font-cond); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin: 1.1rem 0 0.6rem; }
+.om-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 0.8rem; }
+.om-field { display: flex; flex-direction: column; min-width: 0; }
+.om-field.full { grid-column: 1 / -1; }
+#om-form > .om-field { margin-top: 1rem; }
+#om-form label { font-family: var(--font-cond); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.35rem; }
+#om-form label .req { color: var(--accent); }
+#om-form .om-optional { color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
+#om-form input, #om-form textarea, #om-form select { width: 100%; background: var(--dark); border: 1px solid rgba(255,255,255,0.14); border-radius: 2px; color: var(--white); font-family: var(--font-body); font-size: 0.92rem; padding: 0.65rem 0.8rem; color-scheme: dark; }
+#om-form textarea { resize: vertical; min-height: 60px; }
+#om-form input:focus, #om-form textarea:focus, #om-form select:focus { outline: none; border-color: var(--accent); }
+#om-form .is-invalid { border-color: var(--accent2); background: rgba(200,16,46,0.08); }
+.om-help { font-size: 0.75rem; color: var(--muted); margin-top: 0.6rem; text-align: center; }
+.om-error { font-size: 0.85rem; color: var(--accent2); min-height: 1.2em; margin: 0.8rem 0 0.4rem; }
+@media (max-width: 560px) {
+  .order-modal { padding: 0; align-items: stretch; }
+  .order-modal-box { max-height: 100vh; height: 100%; border-radius: 0; padding: 1.3rem 1.1rem 1.2rem; }
+}
