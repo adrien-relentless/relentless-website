@@ -1121,6 +1121,8 @@ permalink: /index.html
   /* ─── HERO VIDÉO ─── */
   .hero-video { position: absolute; inset: 0; overflow: hidden; background: var(--black); }
   .hero-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-video img.hero-anim { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-video.is-anim::after { background: radial-gradient(ellipse at center, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.7) 100%); }
   .hero-video::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,10,10,0.62) 0%, rgba(10,10,10,0.88) 100%); }
   #hero .hero-sub { color: rgba(245,245,240,0.78); text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
   h1.hero-title { font-size: clamp(4.5rem, 14vw, 12rem); line-height: 0.85; margin-bottom: 2rem; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
@@ -1165,9 +1167,10 @@ permalink: /index.html
 
 <!-- ─── HERO ─── -->
 <section id="hero">
-  <!-- Vidéo de fond : montage des performances (data/hero/). Lecture auto (muette, en ligne) ; le script en bas de page la relance si iOS la bloque. -->
+  <!-- Vidéo de fond : montage des performances (data/hero/). Ordinateur : 3 colonnes (hero-desktop.mp4). Téléphone : les performances une par une (hero-mobile.mp4), et si le téléphone bloque la vidéo (mode économie d'énergie), le script affiche à la place l'image animée hero-mobile.webp. -->
   <div class="hero-video" aria-hidden="true">
     <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture poster="/data/hero/hero-poster-desktop.jpg">
+      <source src="/data/hero/hero-mobile.mp4" type="video/mp4" media="(max-width: 699px), (max-aspect-ratio: 3/4)">
       <source src="/data/hero/hero-desktop.mp4" type="video/mp4">
     </video>
   </div>
@@ -1826,17 +1829,32 @@ permalink: /index.html
 </script>
 
 <script>
-  /* ── Vidéo du hero : lecture automatique ; si iOS la bloque (mode économie d'énergie…), on la lance au premier contact ── */
+  /* ── Vidéo du hero : lecture automatique. Sur téléphone, si la vidéo est bloquée (mode économie d'énergie…),
+        on la remplace par l'image animée hero-mobile.webp, qui tourne toujours. ── */
   (function () {
     var v = document.getElementById('heroVideo');
     if (!v) return;
+    var box = v.parentNode;
+    var mobile = window.matchMedia('(max-width: 699px), (max-aspect-ratio: 3/4)').matches;
+    if (mobile) v.poster = '/data/hero/hero-poster-mobile.jpg';
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); return; }
     v.muted = true; v.defaultMuted = true;
-    function tryPlay() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    var swapped = false;
+    function useAnimatedImage() {
+      if (!mobile || swapped || !v.paused) return;
+      swapped = true;
+      var img = new Image();
+      img.className = 'hero-anim'; img.alt = ''; img.setAttribute('aria-hidden', 'true');
+      img.onload = function () { box.classList.add('is-anim'); v.pause(); v.style.display = 'none'; };
+      img.src = '/data/hero/hero-mobile.webp';
+      box.insertBefore(img, v);
+    }
+    function tryPlay() { if (swapped) return; var p = v.play(); if (p && p.catch) p.catch(useAnimatedImage); }
     function onGesture() { tryPlay(); ['touchstart', 'click', 'scroll'].forEach(function (e) { window.removeEventListener(e, onGesture); }); }
     ['touchstart', 'click', 'scroll'].forEach(function (e) { window.addEventListener(e, onGesture, { passive: true }); });
     document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
     tryPlay();
+    setTimeout(useAnimatedImage, 3000); // filet de sécurité : toujours à l'arrêt après 3 s → image animée
   })();
 </script>
 </body>
