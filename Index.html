@@ -1,3 +1,6 @@
+---
+permalink: /index.html
+---
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -315,7 +318,7 @@
   }
 
   /* ─── SECTIONS COMMUNES ─── */
-  section { padding: 100px 2rem; }
+  section { padding: 100px 2rem; scroll-margin-top: 54px; }
 
   .container { max-width: 1200px; margin: 0 auto; }
 
@@ -937,9 +940,6 @@
     color: var(--accent);
   }
 
-  /* ─── CONTACT ─── */
-  https://forms.gle/cgE1bd1pFRetDkrA6 { background: var(--black); }
-
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1098,6 +1098,13 @@
   .footer-links a:hover { color: var(--white); }
 
   /* ─── RESPONSIVE ─── */
+  /* Menu : évite le retour à la ligne entre 900 et 1280 px */
+  .nav-links a { white-space: nowrap; }
+  @media (max-width: 1280px) {
+    .nav-links { gap: 1.4rem; }
+    .nav-brand-sep, .nav-brand-tagline { display: none; }
+  }
+
   @media (max-width: 900px) {
     nav { padding: 0 1.2rem; }
     .nav-links { display: none; flex-direction: column; position: absolute; top: 124px; left: 0; right: 0; background: var(--dark); padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid var(--border); gap: 0; }
@@ -1157,7 +1164,7 @@
     <li><a href="#results">Résultats</a></li>
     <li><a href="#boutique">Boutique</a></li>
     <li><a href="#contenu">Médias</a></li>
-    <li><a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="nav-cta">Nous contacter</a></li>
+    <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
   </ul>
   <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
     <span></span><span></span><span></span>
@@ -1328,7 +1335,7 @@
           <li>Protocoles complets : nutrition, récupération, compétition</li>
 		</ul>
         
-        <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 125 €/mois</a>
+        <a href="/contact/" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 125 €/mois</a>
       </div>
 
       <!-- SUIVI QUOTIDIEN -->
@@ -1355,15 +1362,10 @@
           <li>Analyse technique vidéo approfondie</li>
           <li>Protocoles complets : nutrition, récupération, compétition</li>
         </ul>
-        <a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 175 €/mois</a>
+        <a href="/contact/" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 175 €/mois</a>
       </div>
     </div>
-	<br>
-	
-	<div class="contact-box">
-        <p>Pour toutes questions ou conseil concernant le coaching ou les formules, n'hésite pas à prendre contacte directement par Instagram.</p>
-        <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" class="btn-secondary" style="display:block;margin-bottom:0.8rem;">Message sur Instagram</a>
-      </div>
+
 
   </div>
 </section>
@@ -1573,7 +1575,7 @@
       <li><a href="#coaching">Coaching</a></li>
       <li><a href="#results">Résultats</a></li>
       <li><a href="https://www.relentlessstrengthsystems.com/store" target="_blank">Boutique</a></li>
-      <li><a href="https://forms.gle/cgE1bd1pFRetDkrA6" target="_blank" rel="noopener noreferrer">Contact</a></li>
+      <li><a href="/rejoindre/">Contact</a></li>
     </ul>
     <p class="footer-copy">© 2018 – <span id="footer-year"></span> Relentless Strength Systems. Tous droits réservés.</p>
   </div>
