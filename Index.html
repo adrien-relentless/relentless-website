@@ -419,7 +419,7 @@
 
   .coach-photo {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 4 / 5;
     border-radius: 2px;
     object-fit: cover;
     display: block;
@@ -1226,6 +1226,7 @@
       <div class="reveal" style="transition-delay:0.15s">
         <p class="section-tag">L'équipe</p>
         <h3 style="font-family:var(--font-display);font-size:1.8rem;letter-spacing:0.03em;margin-bottom:1.5rem;">NOS COACHS</h3>
+        <p class="about-text" style="margin-bottom:2rem;">Trois coachs, une même méthode et le même niveau d'exigence : programmation individualisée, analyse technique, ajustements en continu et préparation à la compétition. Après ta prise de contact, nous t'orientons vers le coach et la formule les plus adaptés à ton profil et à tes objectifs.</p>
         <div class="coaches-grid" id="coaches-grid">
           <div class="coach-card"><p class="coach-bio">Chargement de l'équipe…</p></div>
         </div>
@@ -1753,7 +1754,7 @@
         avatar +
         '<div class="coach-name">' + escHTML(c.name) + '</div>' +
         '<div class="coach-role">' + escHTML(c.role) + '</div>' +
-        '<p class="coach-bio">' + escHTML(c.bio) + '</p>' +
+        (c.bio ? '<p class="coach-bio">' + escHTML(c.bio) + '</p>' : '') +
         instaLink +
         '</div>';
     }).join('');
