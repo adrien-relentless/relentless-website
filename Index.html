@@ -646,6 +646,41 @@ permalink: /index.html
     margin-bottom: 1.5rem;
   }
 
+  /* Tableau comparatif des offres */
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .offers-table { width: 100%; border-collapse: collapse; background: var(--dark2); border: 1px solid var(--border); }
+  .offers-table th, .offers-table td { padding: 0.9rem 1.2rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .ot-label { text-align: left; font-size: 0.92rem; color: rgba(245,245,240,0.8); }
+  .ot-cell { text-align: center; width: 26%; font-size: 0.92rem; }
+  .ot-head { text-align: center; width: 26%; padding-top: 1.4rem !important; padding-bottom: 1.3rem !important; border-left: 1px solid var(--border); }
+  .offers-table td.ot-cell { border-left: 1px solid var(--border); }
+  .ot-type { display: inline-block; font-family: var(--font-cond); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); line-height: 1.2; border: 1.5px solid var(--white); background: var(--white); border-radius: 2px; padding: 0.35rem 0.8rem; }
+  .ot-name { display: block; font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; letter-spacing: 0.04em; line-height: 1; margin-bottom: 0.7rem; }
+  .ot-price { display: block; font-family: var(--font-display); font-weight: 400; font-size: 3.6rem; line-height: 1; color: var(--white); }
+  .ot-price small { font-family: var(--font-cond); font-size: 0.85rem; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; margin-left: 0.3rem; }
+  .tick { width: 22px; height: 22px; display: block; margin: 0 auto; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .ot-diff td { background: rgba(200,16,46,0.09); color: var(--white); font-weight: 600; }
+  .offers-table tfoot td { border-bottom: 0; padding-top: 1.4rem; padding-bottom: 1.6rem; }
+  .ot-btn { display: block; text-align: center; padding: 1rem 0.8rem; white-space: nowrap; }
+
+  /* Offres — version mobile : liste simple + 2 formules */
+  .offers-mobile { display: none; }
+  @media (max-width: 560px) {
+    .offers-table-wrap { display: none; }
+    .offers-mobile { display: block; }
+    .om-title { font-family: var(--font-cond); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+    .om-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem; }
+    .om-list li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.92rem; color: rgba(245,245,240,0.85); line-height: 1.45; }
+    .om-list .tick { width: 18px; height: 18px; margin: 0.1rem 0 0; flex-shrink: 0; }
+    .om-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .om-plan { background: var(--dark2); border: 1px solid var(--accent); border-radius: 2px; padding: 1.3rem 0.8rem 1rem; text-align: center; display: flex; flex-direction: column; }
+    .om-plan .ot-type { display: block; font-size: 0.85rem; letter-spacing: 0.06em; padding: 0.35rem 0.3rem; }
+    .om-freq-lbl { font-family: var(--font-cond); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
+    .om-freq { font-weight: 600; font-size: 0.95rem; color: var(--white); margin: 0.2rem 0 1rem; }
+    .om-plan .ot-btn { margin-top: auto; font-size: 0.8rem; padding: 0.75rem 0.3rem; letter-spacing: 0.08em; line-height: 1.25; }
+    .om-btn-price { display: block; font-size: 0.72rem; letter-spacing: 0.06em; opacity: 0.9; }
+  }
+
   /* ─── RÉSULTATS ─── */
   #results { background: var(--dark); }
 
@@ -1133,6 +1168,7 @@ permalink: /index.html
     .shop-grid { grid-template-columns: 1fr 1fr; }
     .payment-grid { grid-template-columns: 1fr; }
     .footer-inner { flex-direction: column; align-items: flex-start; }
+    .footer-links { flex-wrap: wrap; gap: 0.8rem 1.5rem; }
     .years-tabs { flex-wrap: wrap; }
   }
 
@@ -1249,7 +1285,7 @@ permalink: /index.html
       <p class="section-tag">Nos offres</p>
       <!-- <h2 class="section-title">UN&nbsp;COACHING SANS COMPROMIS</h2> -->
       <h2 class="section-title">PRÊT À PASSER AU NIVEAU SUPÉRIEUR ?</h2>
-      <p class="section-intro">Deux formules pour répondre à tes objectifs.</p>
+      <p class="section-intro">Une même méthode, deux rythmes de suivi.</p>
     </div>
 
     <!-- <div class="coaching-includes reveal" style="transition-delay:0.1s"> -->
@@ -1309,62 +1345,63 @@ permalink: /index.html
       <!-- </div> -->
     <!-- </div> -->
 
-    <div class="offers-grid reveal" style="transition-delay:0.2s">
+    <div class="offers-table-wrap reveal" style="transition-delay:0.2s">
+      <table class="offers-table">
+        <thead>
+          <tr>
+            <th class="ot-label" scope="col"><span class="sr-only">Prestation</span></th>
+            <th class="ot-head" scope="col">
+              <span class="ot-type">Suivi hebdomadaire</span>
+            </th>
+            <th class="ot-head" scope="col">
+              <span class="ot-type">Suivi journalier</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="ot-label">Programmation 100% individualisée</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
+          <tr><td class="ot-label">Planification périodisée, actualisée par blocs de 3 à 6 semaines</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
+          <tr><td class="ot-label">Analyse technique vidéo approfondie</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
+          <tr><td class="ot-label">Plan de match adapté aux objectifs pour chaque échéance de compétition</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
+          <tr><td class="ot-label">Accès au groupe WhatsApp privé</td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td><td class="ot-cell"><svg class="tick" viewBox="0 0 24 24" aria-label="Inclus"><path d="M4 12.5l5 5L20 6.5"/></svg></td></tr>
+          <tr class="ot-diff"><td class="ot-label">Fréquence des retours</td><td class="ot-cell">x1 par semaine</td><td class="ot-cell">Quotidiennement</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="ot-label"></td>
+            <td class="ot-cell"><a href="/contact/" class="btn-primary ot-btn">Commencer<span class="ot-btn-price"> – 125 €/mois</span></a></td>
+            <td class="ot-cell"><a href="/contact/" class="btn-primary ot-btn">Commencer<span class="ot-btn-price"> – 175 €/mois</span></a></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 
-      <!-- SUIVI HEBDOMADAIRE -->
-      <div class="offer-card">
-        <div class="offer-type">Suivi Hebdomadaire</div>
-        <div class="offer-title">COACHING HEBDO</div>
-        <!-- <div class="offer-coach">Par Adrien Plastre</div> -->
-        <div class="offer-price">
-          <span class="offer-price-num">125€</span>
-          <span class="offer-price-unit">/ mois</span>
+    <!-- Version mobile des offres (le tableau est masqué sous 560 px) -->
+    <div class="offers-mobile reveal" style="transition-delay:0.2s">
+      <p class="om-title">Inclus dans les deux formules</p>
+      <ul class="om-list">
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Programmation 100% individualisée</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Planification périodisée, actualisée par blocs de 3 à 6 semaines</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Analyse technique vidéo approfondie</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Plan de match adapté aux objectifs pour chaque échéance de compétition</span></li>
+        <li><svg class="tick" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span>Accès au groupe WhatsApp privé</span></li>
+      </ul>
+      <div class="om-plans">
+        <div class="om-plan">
+          <span class="ot-type">Suivi hebdomadaire</span>
+          <span class="om-freq-lbl">Fréquence des retours</span>
+          <span class="om-freq">x1 par semaine</span>
+          <a href="/contact/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">125 €/mois</span></a>
         </div>
-		<div class="offer-access">Accès au groupe WhatsApp privé</div>
-        <p class="offer-desc">
-          Adapté à tous les niveaux et tous les objectifs. Le compromis idéal pour maximiser vos progrès avec une structure solide et un encadrement professionnel.
-        </p>
-
-        <ul class="offer-features">
-          <li>Questionnaire initial pour une programmation personnalisée</li>
-          <li>Planification périodisée sur plusieurs mois</li>
-          <li>Actualisation par blocs de 3 à 6 semaines</li>
-          <li>Échange hebdomadaire avec retour technique</li>
-          <li>Adaptations semaine par semaine</li>
-		  <li>Analyse technique vidéo approfondie</li>
-          <li>Protocoles complets : nutrition, récupération, compétition</li>
-		</ul>
-        
-        <a href="/contact/" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 125 €/mois</a>
-      </div>
-
-      <!-- SUIVI QUOTIDIEN -->
-      <div class="offer-card featured">
-        <!-- offer-badge removed -->
-        <div class="offer-type">Suivi Quotidien</div>
-        <div class="offer-title">COACHING JOURNALIER</div>
-        <!-- <div class="offer-coach">Par Florent Blanc</div> -->
-        <div class="offer-price">
-          <span class="offer-price-num">175€</span>
-          <span class="offer-price-unit">/ mois</span>
+        <div class="om-plan">
+          <span class="ot-type">Suivi journalier</span>
+          <span class="om-freq-lbl">Fréquence des retours</span>
+          <span class="om-freq">Quotidiennement</span>
+          <a href="/contact/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">175 €/mois</span></a>
         </div>
-		<div class="offer-access">Accès au groupe WhatsApp privé</div>
-        <p class="offer-desc">
-          La formule optimale pour les athlètes sérieux. Un encadrement quotidien pour tirer le meilleur parti de chaque entraînement.
-		  <br></br>
-        </p>
-        <ul class="offer-features">
-          <li>Questionnaire initial pour une programmation personnalisée</li>
-          <li>Planification périodisée sur plusieurs mois</li>
-          <li>Actualisation par blocs de 3 à 6 semaines</li>
-          <li>Échanges réguliers tout au long de la semaine</li>
-          <li>Adaptation quotidienne aux aléas et aux ressentis</li>
-          <li>Analyse technique vidéo approfondie</li>
-          <li>Protocoles complets : nutrition, récupération, compétition</li>
-        </ul>
-        <a href="/contact/" class="btn-primary" style="width:100%;text-align:center;display:block;">Commencer – 175 €/mois</a>
       </div>
     </div>
+
 
 
   </div>
