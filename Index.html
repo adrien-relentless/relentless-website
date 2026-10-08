@@ -1165,9 +1165,11 @@ permalink: /index.html
 
 <!-- ─── HERO ─── -->
 <section id="hero">
-  <!-- Vidéo de fond : montage des performances (data/hero/). Lancée par le script en bas de page. -->
+  <!-- Vidéo de fond : montage des performances (data/hero/). Lecture auto (muette, en ligne) ; le script en bas de page la relance si iOS la bloque. -->
   <div class="hero-video" aria-hidden="true">
-    <video id="heroVideo" muted loop playsinline autoplay preload="none"></video>
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" disablepictureinpicture poster="/data/hero/hero-poster-desktop.jpg">
+      <source src="/data/hero/hero-desktop.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-bg"></div>
   <div class="hero-inner">
@@ -1824,16 +1826,17 @@ permalink: /index.html
 </script>
 
 <script>
-  /* ── Vidéo du hero (même fichier partout) ; rien si l'utilisateur limite les animations ── */
+  /* ── Vidéo du hero : lecture automatique ; si iOS la bloque (mode économie d'énergie…), on la lance au premier contact ── */
   (function () {
     var v = document.getElementById('heroVideo');
     if (!v) return;
-    var name = 'desktop'; // même montage (3 colonnes) sur ordinateur et mobile
-    v.poster = '/data/hero/hero-poster-' + name + '.jpg';
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    v.muted = true;
-    v.src = '/data/hero/hero-' + name + '.mp4';
-    var p = v.play(); if (p && p.catch) p.catch(function () {});
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); return; }
+    v.muted = true; v.defaultMuted = true;
+    function tryPlay() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+    function onGesture() { tryPlay(); ['touchstart', 'click', 'scroll'].forEach(function (e) { window.removeEventListener(e, onGesture); }); }
+    ['touchstart', 'click', 'scroll'].forEach(function (e) { window.addEventListener(e, onGesture, { passive: true }); });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) tryPlay(); });
+    tryPlay();
   })();
 </script>
 </body>
