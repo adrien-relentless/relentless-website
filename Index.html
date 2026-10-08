@@ -1118,6 +1118,23 @@ permalink: /index.html
   a[href*="instagram"] .ico { fill: url(#ig-grad); }
   a[href*="youtube"] .ico { fill: #FF0000; }
   a[href*="spotify"] .ico { fill: #1ED760; }
+  /* ─── HERO VIDÉO ─── */
+  .hero-video { position: absolute; inset: 0; overflow: hidden; background: var(--black); }
+  .hero-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-video::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,10,10,0.62) 0%, rgba(10,10,10,0.88) 100%); }
+  #hero .hero-sub { color: rgba(245,245,240,0.78); text-shadow: 0 1px 12px rgba(0,0,0,0.6); }
+  h1.hero-title { font-size: clamp(4.5rem, 14vw, 12rem); line-height: 0.85; margin-bottom: 2rem; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+  .hero-title-sub { display: block; font-family: var(--font-cond); font-weight: 600; font-size: clamp(0.85rem, 1.6vw, 1.35rem); letter-spacing: 0.5em; padding-left: 0.5em; text-transform: uppercase; color: var(--accent); margin-top: 0.9rem; line-height: 1; }
+  @media (max-width: 560px) {
+    h1.hero-title { text-align: center; font-size: clamp(3.6rem, 19vw, 5rem); }
+    .hero-title-sub { letter-spacing: 0.35em; padding-left: 0.35em; }
+  }
+  /* Bloc sous le hero (citation + chiffres) */
+  .hero-after { padding: 3.5rem 2rem 1rem; background: var(--black); }
+  .hero-after .hero-stats { margin-top: 3rem; }
+  #hero { min-height: 100vh; }
+  #hero .hero-actions { margin-top: 0.5rem; }
+  @media (max-width: 560px) { .hero-after { padding: 2.5rem 1.2rem 0.5rem; } }
 </style>
 </head>
 <body>
@@ -1148,18 +1165,27 @@ permalink: /index.html
 
 <!-- ─── HERO ─── -->
 <section id="hero">
+  <!-- Vidéo de fond : montage des performances (data/hero/). Lancée par le script en bas de page. -->
+  <div class="hero-video" aria-hidden="true">
+    <video id="heroVideo" muted loop playsinline autoplay preload="none"></video>
+  </div>
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <h1 class="hero-title">RELENTLESS<br><em>STRENGTH</em><br>SYSTEMS</h1>
-    <p class="hero-sub">
-      <strong>« Ardeur furieuse et opiniâtre dans la lutte, la poursuite et l'effort. »</strong>
-    </p>
-    <p class="hero-sub" style="margin-top:-1.5rem;font-size:1rem;max-width:800px;">Coaching individualisé en powerlifting depuis 2018 — du débutant ambitieux au haut niveau international.</p>
+    <h1 class="hero-title">RELENTLESS<span class="hero-title-sub">Strength Systems</span></h1>
     <div class="hero-actions">
       <a href="#coaching" class="btn-primary">Démarrer le coaching</a>
       <a href="#coaching" class="btn-secondary">Découvrir nos offres</a>
     </div>
 
+  </div>
+</section>
+<!-- Sous le hero vidéo : citation, présentation et chiffres clés -->
+<div class="hero-after">
+  <div class="hero-inner">
+    <p class="hero-sub">
+      <strong>« Ardeur furieuse et opiniâtre dans la lutte, la poursuite et l'effort. »</strong>
+    </p>
+    <p class="hero-sub" style="margin-top:-1.5rem;font-size:1rem;max-width:800px;">Coaching individualisé en powerlifting depuis 2018 — du débutant ambitieux au haut niveau international.</p>
     <div class="hero-stats">
       <div class="hero-stat">
         <span class="hero-stat-num" id="stat-years">6+</span>
@@ -1179,8 +1205,7 @@ permalink: /index.html
       </div>
     </div>
   </div>
-</section>
-
+</div>
 <!-- ─── À PROPOS ─── -->
 <section id="about">
   <div class="container">
@@ -1798,5 +1823,18 @@ permalink: /index.html
   })();
 </script>
 
+<script>
+  /* ── Vidéo du hero (même fichier partout) ; rien si l'utilisateur limite les animations ── */
+  (function () {
+    var v = document.getElementById('heroVideo');
+    if (!v) return;
+    var name = 'desktop'; // même montage (3 colonnes) sur ordinateur et mobile
+    v.poster = '/data/hero/hero-poster-' + name + '.jpg';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    v.muted = true;
+    v.src = '/data/hero/hero-' + name + '.mp4';
+    var p = v.play(); if (p && p.catch) p.catch(function () {});
+  })();
+</script>
 </body>
 </html>
