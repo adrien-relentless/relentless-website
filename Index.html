@@ -1207,7 +1207,7 @@ permalink: /index.html
   #coaching, #boutique { background: var(--black); }
   section { border-top: 1px solid var(--border); }
   .section-tag { font-family: var(--font-cond); font-weight: 500; letter-spacing: 0.14em; font-size: 0.78rem; }
-  .section-tag::before { content: '//'; width: auto; height: auto; background: none; }
+  .section-tag::before { content: ''; width: 9px; height: 9px; flex: none; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px rgba(224,33,47,0.85), 0 0 3px rgba(255,90,100,0.9); }
   .section-title { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(2.1rem, 5vw, 4.2rem); line-height: 0.92; letter-spacing: -0.025em; }
   .section-intro, .about-text { font-size: 1rem; }
   .about-quote { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; text-transform: uppercase; letter-spacing: -0.005em; }
@@ -1249,6 +1249,40 @@ permalink: /index.html
     .hero-stat { padding: 1.2rem; }
     .hero-stat-num { font-size: 2.2rem; }
     h1.hero-title { text-align: center; font-size: clamp(2.4rem, 12.6vw, 4rem); }
+  }
+  /* Palmarès : tableau par niveau (International / National), trié par place */
+  .pal-level { display: flex; align-items: center; gap: 1rem; margin: 2rem 0 0.8rem; }
+  .pal-lv { font-family: var(--font-cond); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.55rem; border: 1px solid var(--muted); color: var(--muted); }
+  .pal-lv.intl { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .pal-count { font-family: var(--font-cond); font-size: 0.75rem; color: var(--muted); }
+  .pal-table { width: 100%; border-collapse: collapse; background: var(--dark2); border: 1px solid var(--border); }
+  .pal-table th { font-family: var(--font-cond); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); }
+  .pal-table td { padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 0.95rem; }
+  .pal-table tr:last-child td { border-bottom: 0; }
+  .pal-pl { width: 220px; white-space: nowrap; }
+  .pal-pl > div { display: flex; align-items: center; gap: 0.7rem; }
+  .pal-rk { font-family: var(--font-cond); font-weight: 700; width: 34px; height: 34px; flex: none; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--border); color: var(--white); }
+  .pal-rk.g { background: #d9b44a; border-color: #d9b44a; color: #111; }
+  .pal-rk.s { background: #c9ccd1; border-color: #c9ccd1; color: #111; }
+  .pal-rk.b { background: #c27a4a; border-color: #c27a4a; color: #111; }
+  .pal-pt { font-family: var(--font-cond); font-size: 0.75rem; color: var(--muted); }
+  .pal-nm { font-weight: 700; }
+  .pal-cat { font-family: var(--font-cond); font-size: 0.78rem; border: 1px solid var(--border); padding: 0.2rem 0.45rem; white-space: nowrap; }
+  .pal-cp { color: var(--muted); font-size: 0.88rem; }
+  .pal-tag { display: inline-block; font-family: var(--font-cond); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.22rem 0.45rem; margin: 0.15rem 0.3rem 0.15rem 0; background: var(--dark3); color: var(--white); }
+  .pal-tag.rec { background: rgba(224,33,47,0.18); color: #ff6b75; border: 1px solid rgba(224,33,47,0.5); }
+  .pal-tag.sel { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.35); }
+  @media (max-width: 760px) {
+    .pal-table thead { display: none; }
+    .pal-table, .pal-table tbody { display: block; }
+    .pal-table tr { display: grid; grid-template-columns: auto 1fr auto; gap: 0.25rem 0.75rem; padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--border); }
+    .pal-table tr:last-child { border-bottom: 0; }
+    .pal-table td { display: block; padding: 0; border: 0; }
+    .pal-pl { width: auto; grid-row: span 3; }
+    .pal-pl .pal-pt { display: none; }
+    .pal-nm { grid-column: 2; }
+    .pal-ct { grid-column: 3; grid-row: 1; justify-self: end; }
+    .pal-cp, .pal-nt { grid-column: 2 / 4; }
   }
 </style>
 </head>
@@ -1729,34 +1763,43 @@ permalink: /index.html
              escHTML(y) + '</button>';
     }).join('');
 
-    // Build panels
-    panelsEl.innerHTML = yearOrder.map(function(y, i) {
-      // Group by competition within year
-      var byComp = {};
-      var compOrder = [];
-      byYear[y].forEach(function(r) {
-        var key = r.level + '||' + r.competition;
-        if (!byComp[key]) { byComp[key] = { level: r.level, competition: r.competition, rows: [] }; compOrder.push(key); }
-        byComp[key].rows.push(r);
-      });
-      var blocks = compOrder.map(function(k) {
-        var c = byComp[k];
-        var levelLabel = c.level === 'intl' ? 'International' : 'National';
-        var rowsHtml = c.rows.map(function(r) {
-          return '<div class="result-row">' +
-            '<span class="result-athlete">' + escHTML(r.athlete) + '</span>' +
-            '<span class="result-place">' + escHTML(r.place) + '</span>' +
-            '<span class="result-note">' + escHTML(r.note) + '</span>' +
-            '</div>';
-        }).join('');
-        return '<div class="comp-block">' +
-          '<div class="comp-block-header">' +
-          '<span class="comp-level ' + escHTML(c.level) + '">' + levelLabel + '</span>' +
-          '<span class="comp-name">' + escHTML(c.competition) + '</span>' +
-          '</div>' + rowsHtml + '</div>';
+    // Build panels : pour chaque année, un tableau « International » puis « National », trié par place
+    function rankOf(place) {
+      var p = (place || '').toLowerCase();
+      if (/vice|^2e/.test(p)) return 2;
+      if (/champion|1er|1ère/.test(p)) return 1;
+      var m = p.match(/^(\d+)e/);
+      return m ? parseInt(m[1], 10) : 99;
+    }
+    function tagsHTML(note) {
+      if (!note) return '';
+      return note.split(/\s+\+\s+/).map(function(t) {
+        var cls = /record/i.test(t) ? ' rec' : (/s[ée]lection|minima|collectif|qualif/i.test(t) ? ' sel' : '');
+        return '<span class="pal-tag' + cls + '">' + escHTML(t) + '</span>';
       }).join('');
-      return '<div id="year-' + escHTML(y) + '" class="results-panel' + (i === 0 ? ' active' : '') +
-             '"><div class="results-year-grid">' + blocks + '</div></div>';
+    }
+    function levelTable(list, level, label) {
+      var rows = list.filter(function(r) { return r.level === level; })
+        .map(function(r, idx) { return { r: r, k: rankOf(r.place), idx: idx }; })
+        .sort(function(a, b) { return a.k - b.k || a.idx - b.idx; });
+      if (!rows.length) return '';
+      var body = rows.map(function(o) {
+        var r = o.r, k = o.k;
+        var medal = k === 1 ? ' g' : k === 2 ? ' s' : k === 3 ? ' b' : '';
+        return '<tr>' +
+          '<td class="pal-pl"><div><span class="pal-rk' + medal + '">' + (k < 99 ? k : '–') + '</span><span class="pal-pt">' + escHTML(r.place || '') + '</span></div></td>' +
+          '<td class="pal-nm">' + escHTML(r.athlete) + '</td>' +
+          '<td class="pal-ct">' + (r.categorie ? '<span class="pal-cat">' + escHTML(r.categorie) + '</span>' : '') + '</td>' +
+          '<td class="pal-cp">' + escHTML(r.competition) + '</td>' +
+          '<td class="pal-nt">' + tagsHTML(r.note) + '</td>' +
+          '</tr>';
+      }).join('');
+      return '<div class="pal-level"><span class="pal-lv ' + level + '">' + label + '</span><span class="pal-count">' + rows.length + ' résultat' + (rows.length > 1 ? 's' : '') + '</span></div>' +
+        '<table class="pal-table"><thead><tr><th>Place</th><th>Athlète</th><th>Catégorie</th><th>Compétition</th><th>Notes</th></tr></thead><tbody>' + body + '</tbody></table>';
+    }
+    panelsEl.innerHTML = yearOrder.map(function(y, i) {
+      return '<div id="year-' + escHTML(y) + '" class="results-panel' + (i === 0 ? ' active' : '') + '">' +
+        levelTable(byYear[y], 'intl', 'International') + levelTable(byYear[y], 'nat', 'National') + '</div>';
     }).join('');
   }
 
