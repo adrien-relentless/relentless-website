@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Démarrer ton coaching – Relentless Strength Systems</title>
-<meta name="description" content="Démarre ton coaching powerlifting avec Relentless Strength Systems : remplis le questionnaire de prise de contact.">
+<title>Formulaire de contact – Relentless Strength Systems</title>
+<meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="/data/pics/logo.png">
+<link rel="stylesheet" href="/data/contact-form.css">
+<link rel="stylesheet" href="/data/avis-google.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/data/contact-form.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --black: #0a0a0a;
     --dark: #111111;
     --dark2: #1a1a1a;
-    --dark3: #222222;
     --accent: #c8102e;
     --accent2: #e8192e;
     --white: #f5f5f0;
@@ -34,146 +34,23 @@
     color: var(--white);
     font-size: 16px;
     line-height: 1.6;
-    overflow-x: hidden;
   }
 
-  /* ─── NAV (identique à la page d'accueil) ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 124px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+  main { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.2rem 3rem; }
 
-  .nav-brand { display: flex; align-items: center; gap: 1.4rem; }
-  .nav-brand img { height: 100px; width: auto; display: block; filter: brightness(0) invert(1); }
-
-  .nav-brand-sep { width: 1.5px; height: 36px; background: var(--accent); opacity: 0.85; flex-shrink: 0; }
-
-  .nav-brand-tagline {
-    font-family: var(--font-cond);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--white);
-    white-space: nowrap;
-  }
-  .nav-brand-tagline span { color: var(--accent); }
-
-  .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
-
-  .nav-links a {
-    font-family: var(--font-cond);
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-
-  .nav-cta {
-    background: var(--accent) !important;
-    color: var(--white) !important;
-    padding: 0.5rem 1.2rem !important;
-    border-radius: 2px;
-  }
-
-  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: 0; }
-  .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); }
-
-  /* ─── EN-TÊTE ─── */
-  .contact-page { padding: 184px 2rem 100px; }
-  .container { max-width: 760px; margin: 0 auto; }
-
-  .section-tag {
-    font-family: var(--font-cond);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .section-tag::before { content: ''; display: block; width: 30px; height: 1px; background: var(--accent); }
+  .logo { display: block; width: 72px; height: auto; margin: 0 auto 1.2rem; filter: brightness(0) invert(1); }
 
   h1 {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
     line-height: 1;
-    letter-spacing: 0.02em;
-    margin-bottom: 1rem;
+    letter-spacing: 0.03em;
+    text-align: center;
+    margin-bottom: 0.6rem;
   }
 
-  .intro { color: var(--muted); line-height: 1.7; margin-bottom: 3rem; }
-
-  /* ─── FOOTER ─── */
-  footer { background: var(--dark); border-top: 1px solid var(--border); padding: 3rem 2rem; }
-  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-  .footer-inner img { height: 46px; width: auto; filter: brightness(0) invert(1); opacity: 0.65; display: block; }
-  .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a { font-family: var(--font-cond); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
-  .footer-links a:hover { color: var(--white); }
-  .footer-copy { font-size: 0.8rem; color: var(--muted); }
-
-  /* Menu : évite le retour à la ligne entre 900 et 1280 px */
-  .nav-links a { white-space: nowrap; }
-  @media (max-width: 1280px) {
-    .nav-links { gap: 1.4rem; }
-    .nav-brand-sep, .nav-brand-tagline { display: none; }
-  }
-
-  @media (max-width: 900px) {
-    nav { padding: 0 1.2rem; }
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 124px; left: 0; right: 0; background: var(--dark); padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid var(--border); gap: 0; }
-    .nav-links.open { display: flex; }
-    .nav-links li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
-    .nav-toggle { display: flex; }
-  }
-
-  @media (max-width: 560px) {
-    .nav-brand-sep, .nav-brand-tagline { display: none; }
-    .contact-page { padding: 154px 1.2rem 70px; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-    .footer-links { flex-wrap: wrap; gap: 0.8rem 1.5rem; }
-  }
-  /* Bouton Boutique (contour blanc) + accès boutique visible sur mobile */
-  .nav-links a.nav-shop { color: var(--white); border: 1.5px solid var(--white); padding: 0.45rem 1.1rem; border-radius: 2px; transition: border-color 0.2s; }
-  .nav-links a.nav-shop:hover { color: var(--white); border-color: var(--accent); }
-  .nav-shop-mobile { display: none; }
-  @media (max-width: 900px) {
-    .nav-links a.nav-shop { border: 0; padding: 0; }
-    .nav-shop-mobile { display: inline-flex; align-items: center; margin-left: auto; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); text-decoration: none; border: 1.5px solid var(--white); padding: 0.4rem 0.8rem; border-radius: 2px; }
-  }
-  .nav-links a.nav-relentless { font-weight: 700; }
-  /* Mobile : bouton rouge « Nous contacter » (« Contact » sur petit écran) à droite de Boutique */
-  .nav-contact-mobile { display: none; }
-  @media (max-width: 900px) {
-    .nav-shop-mobile { margin-right: 0.5rem; }
-    .nav-contact-mobile { display: inline-flex; align-items: center; margin-right: 1rem; font-family: var(--font-cond); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); background: var(--accent); border: 1.5px solid var(--accent); text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 2px; white-space: nowrap; }
-    .nav-contact-mobile:hover { background: var(--accent2); border-color: var(--accent2); }
-    .ncm-short { display: none; }
-  }
-  @media (max-width: 480px) { .ncm-long { display: none; } .ncm-short { display: inline; } }
-  @media (max-width: 380px) {
-    .nav-shop-mobile, .nav-contact-mobile { padding: 0.35rem 0.55rem; font-size: 0.72rem; letter-spacing: 0.08em; }
-    .nav-shop-mobile { margin-right: 0.35rem; }
-    .nav-contact-mobile { margin-right: 0.7rem; }
-  }
+  .intro { color: var(--muted); text-align: center; font-size: 0.95rem; margin-bottom: 2rem; }
   /* ═══════════ STYLE « Plateau de compétition » (adopté le 08/10/2026 — même thème que l'accueil) ═══════════ */
   :root {
     --black: #0d0f12; --dark: #111419; --dark2: #161a20; --dark3: #20252d;
@@ -206,54 +83,18 @@
 </style>
 </head>
 <body>
-
-<nav id="navbar">
-  <a href="/" class="nav-brand" style="text-decoration:none;">
-    <img src="/data/pics/logo.png" alt="Relentless Strength Systems">
-    <div class="nav-brand-sep"></div>
-    <span class="nav-brand-tagline">Powerlifting Coaching<span> .</span></span>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="/#about" class="nav-relentless">RELENTLESS</a></li>
-    <li><a href="/#coaching">Coaching</a></li>
-    <li><a href="/#results">Résultats</a></li>
-    <li><a href="/#contenu">Médias</a></li>
-    <li><a href="/boutique/" class="nav-shop">Boutique</a></li>
-    <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
-  </ul>
-  <a href="/boutique/" class="nav-shop-mobile">Boutique</a>
-  <a href="/rejoindre/" class="nav-contact-mobile"><span class="ncm-long">Nous contacter</span><span class="ncm-short">Contact</span></a>
-  <button class="nav-toggle" type="button" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<main class="contact-page">
-  <div class="container">
-    <h1>DÉMARRER TON COACHING</h1>
-    <p class="intro">Remplis ce questionnaire : il est transmis directement aux trois coachs. Nous revenons vers toi sur Instagram ou WhatsApp pour définir ensemble la formule et le coach les plus adaptés.</p>
-
-    <div id="contact-form"></div>
-
-    <p class="contact-alt">Une question avant de te lancer ? <a href="https://www.instagram.com/relentless.powerlifting" target="_blank" rel="noopener">Écris-nous sur Instagram</a></p>
+<main>
+  <a href="/" aria-label="Retour au site Relentless"><img class="logo" src="/data/pics/logo.png" alt="Relentless Strength Systems"></a>
+  <h1>FORMULAIRE DE CONTACT</h1>
+  <p class="intro">Remplis ce questionnaire, nous revenons vers toi sur Instagram ou WhatsApp.</p>
+  <!-- Avis Google (version compacte, mêmes données que l'accueil : data/avis-google.csv) -->
+  <div class="reviews-compact">
+    <p class="rv-kicker" style="justify-content:center">L'expérience Relentless</p>
+    <div class="reviews reviews--compact" data-csv="/data/avis-google.csv" data-google-url=""></div>
   </div>
+  <div id="contact-form"></div>
 </main>
-
-<footer>
-  <div class="footer-inner">
-    <a href="/"><img src="/data/pics/logo.png" alt="Relentless Strength Systems"></a>
-    <ul class="footer-links">
-      <li><a href="/#about">À propos</a></li>
-      <li><a href="/#coaching">Coaching</a></li>
-      <li><a href="/#results">Résultats</a></li>
-      <li><a href="/boutique/">Boutique</a></li>
-      <li><a href="/rejoindre/">Contact</a></li>
-    </ul>
-    <p class="footer-copy">© 2018 – <span id="footer-year"></span> Relentless Strength Systems. Tous droits réservés.</p>
-  </div>
-</footer>
-
-<script>document.getElementById('footer-year').textContent = new Date().getFullYear();</script>
 <script src="/data/contact-form.js"></script>
+<script src="/data/avis-google.js" defer></script>
 </body>
 </html>

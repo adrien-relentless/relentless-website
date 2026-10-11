@@ -1287,6 +1287,7 @@ permalink: /index.html
     .pal-cp, .pal-nt { grid-column: 2 / 4; }
   }
 </style>
+<link rel="stylesheet" href="/data/avis-google.css">
 </head>
 <body>
 <!-- Icônes réseaux (Simple Icons, licence CC0) -->
@@ -1306,10 +1307,10 @@ permalink: /index.html
     <li><a href="#results">Résultats</a></li>
     <li><a href="#contenu">Médias</a></li>
     <li><a href="/boutique/" class="nav-shop">Boutique</a></li>
-    <li><a href="/rejoindre/" class="nav-cta">Nous contacter</a></li>
+    <li><a href="/contact/" class="nav-cta">Nous contacter</a></li>
   </ul>
   <a href="/boutique/" class="nav-shop-mobile">Boutique</a>
-  <a href="/rejoindre/" class="nav-contact-mobile"><span class="ncm-long">Nous contacter</span><span class="ncm-short">Contact</span></a>
+  <a href="/contact/" class="nav-contact-mobile"><span class="ncm-long">Nous contacter</span><span class="ncm-short">Contact</span></a>
   <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
     <span></span><span></span><span></span>
   </div>
@@ -1397,6 +1398,18 @@ permalink: /index.html
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ─── AVIS GOOGLE : bandeau défilant juste avant les offres (data/avis-google.csv + .js + .css) ─── -->
+<section id="avis">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-tag">L'expérience Relentless</p>
+      <h2 class="section-title">RETOURS DE NOS ATHLÈTES</h2>
+    </div>
+    <!-- data-google-url : coller ici le lien de la fiche Google (vide = bouton « Voir tous les avis » masqué) -->
+    <div class="reviews" data-csv="/data/avis-google.csv" data-google-url=""></div>
   </div>
 </section>
 
@@ -1491,8 +1504,8 @@ permalink: /index.html
         <tfoot>
           <tr>
             <td class="ot-label"></td>
-            <td class="ot-cell"><a href="/contact/" class="btn-primary ot-btn">Commencer<span class="ot-btn-price"> – 125 €/mois</span></a></td>
-            <td class="ot-cell"><a href="/contact/" class="btn-primary ot-btn">Commencer<span class="ot-btn-price"> – 175 €/mois</span></a></td>
+            <td class="ot-cell"><a href="/rejoindre/" class="btn-primary ot-btn">Commencer<span class="ot-btn-price"> – 125 €/mois</span></a></td>
+            <td class="ot-cell"><a href="/rejoindre/" class="btn-primary ot-btn">Commencer<span class="ot-btn-price"> – 175 €/mois</span></a></td>
           </tr>
         </tfoot>
       </table>
@@ -1513,13 +1526,13 @@ permalink: /index.html
           <span class="ot-type">Suivi hebdomadaire</span>
           <span class="om-freq-lbl">Fréquence des retours</span>
           <span class="om-freq">x1 par semaine</span>
-          <a href="/contact/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">125 €/mois</span></a>
+          <a href="/rejoindre/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">125 €/mois</span></a>
         </div>
         <div class="om-plan">
           <span class="ot-type">Suivi journalier</span>
           <span class="om-freq-lbl">Fréquence des retours</span>
           <span class="om-freq">Quotidienne</span>
-          <a href="/contact/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">175 €/mois</span></a>
+          <a href="/rejoindre/" class="btn-primary ot-btn">Commencer<span class="om-btn-price">175 €/mois</span></a>
         </div>
       </div>
     </div>
@@ -1634,7 +1647,7 @@ permalink: /index.html
       <li><a href="#coaching">Coaching</a></li>
       <li><a href="#results">Résultats</a></li>
       <li><a href="/boutique/">Boutique</a></li>
-      <li><a href="/rejoindre/">Contact</a></li>
+      <li><a href="/contact/">Contact</a></li>
     </ul>
     <p class="footer-copy">© 2018 – <span id="footer-year"></span> Relentless Strength Systems. Tous droits réservés.</p>
   </div>
@@ -2006,5 +2019,6 @@ permalink: /index.html
     tryPlay();
   })();
 </script>
+<script src="/data/avis-google.js" defer></script>
 </body>
 </html>

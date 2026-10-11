@@ -9,8 +9,8 @@ module.exports = function(eleventyConfig) {
       includes: "_includes"
     },
     // Les pages .html sont publiées telles quelles (aucun traitement de gabarit) :
-    //   contact.html   -> /contact/
-    //   rejoindre.html -> /rejoindre/
+    //   contact.html   -> /contact/    (formulaire de contact minimal)
+    //   rejoindre.html -> /rejoindre/  (démarrer le coaching : formulaire complet + avis)
     //   Index.html     -> /  (adresse fixée par son en-tête "permalink")
     htmlTemplateEngine: false,
     markdownTemplateEngine: "njk"
