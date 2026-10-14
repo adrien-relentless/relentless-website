@@ -1,6 +1,7 @@
 /* Avis Google — bandeau défilant horizontal.
    Données : data/avis-google.csv (colonnes prenom, note, date, texte, afficher, fictif).
-   - afficher = "oui" → avis montré (seuls les avis 5 étoiles sont affichés)
+   - afficher = "oui" → avis montré (seuls les avis 5 étoiles avec texte sont affichés)
+   - afficher = "non" → avis non montré mais compté dans la note et le nombre d'avis (ex. avis sans texte)
    - fictif = "oui" → avis de démonstration : un badge « Aperçu · avis fictifs » s'affiche.
      Remplacer par les vrais avis (et vider la colonne fictif) avant la mise en ligne.
    Lien « Voir tous les avis » : attribut data-google-url sur le bloc .reviews (vide → bouton masqué). */
@@ -45,12 +46,17 @@
     });
     if (!list.length) { root.hidden = true; return; }
     var preview = list.some(function (r) { return (r.fictif || '').toLowerCase() === 'oui'; });
+    /* Note et nombre d'avis : calculés sur TOUTES les lignes notées du CSV (y compris les avis sans texte, afficher = non). */
+    var rated = rows.filter(function (r) { return parseInt(r.note, 10) >= 1; });
+    var total = rated.length || list.length;
+    var avg = rated.length ? rated.reduce(function (a, r) { return a + parseInt(r.note, 10); }, 0) / rated.length : 5;
+    var avgTxt = avg.toFixed(1).replace('.', ',');
     var url = root.getAttribute('data-google-url');
 
     root.innerHTML =
       '<div class="rv-summary">' +
-        '<div class="rv-score"><span class="rv-score-num">5,0</span>' +
-          '<span class="rv-score-meta">' + stars(5) + '<small>' + list.length + ' avis Google</small></span></div>' +
+        '<div class="rv-score"><span class="rv-score-num">' + avgTxt + '</span>' +
+          '<span class="rv-score-meta">' + stars(5) + '<small>' + total + ' avis Google</small></span></div>' +
         (preview ? '<span class="rv-preview">Aperçu · avis fictifs</span>' : '') +
         (url ? '<a class="btn-secondary rv-google-link" href="' + esc(url) + '" target="_blank" rel="noopener">Voir tous les avis</a>' : '') +
         '<div class="rv-arrows"><button type="button" class="rv-arrow" data-dir="-1" aria-label="Avis précédent">←</button>' +
@@ -63,6 +69,7 @@
     if (!url) { var a = root.querySelector('.rv-arrows'); if (a) a.style.marginLeft = 'auto'; }
 
     animate(root);
+    addMore(root);
   }
 
   /* Défilement automatique continu, en boucle ; pause au survol, au toucher et au clavier. */
@@ -107,7 +114,7 @@
     function tick(t) {
       var dt = last ? Math.min((t - last) / 1000, 0.1) : 0;
       last = t;
-      if (!paused && visible && !document.hidden) {
+      if (!paused && visible && !document.hidden && !root.classList.contains('rv-hold')) {
         pos += SPEED * dt;
         if (pos >= half()) pos -= half();
         track.scrollLeft = pos;
@@ -115,6 +122,51 @@
       requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
+  }
+
+  /* « Lire la suite » : affiché seulement sur les avis coupés → ouvre une fenêtre avec l'avis complet. */
+  function addMore(root) {
+    var track = root.querySelector('.rv-track');
+    function check() {
+      root.querySelectorAll('.rv-card').forEach(function (c) {
+        var t = c.querySelector('.rv-text'), b = c.querySelector('.rv-more');
+        var cut = t.scrollHeight > t.clientHeight + 2;
+        if (cut && !b) {
+          b = document.createElement('button'); b.type = 'button'; b.className = 'rv-more'; b.textContent = 'Lire la suite';
+          if (c.getAttribute('aria-hidden')) b.tabIndex = -1;
+          t.insertAdjacentElement('afterend', b);
+        } else if (!cut && b) b.remove();
+      });
+    }
+    check();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(check);
+    window.addEventListener('resize', check);
+    track.addEventListener('click', function (e) {
+      var b = e.target.closest('.rv-more');
+      if (b) openModal(root, b.closest('.rv-card'));
+    });
+  }
+
+  function openModal(root, c) {
+    var m = document.createElement('div');
+    m.className = 'rv-modal';
+    m.innerHTML = '<div class="rv-modal-box" role="dialog" aria-modal="true" aria-label="Avis complet">' +
+      '<button type="button" class="rv-modal-close" aria-label="Fermer">×</button>' +
+      c.querySelector('.rv-head').outerHTML + c.querySelector('.rv-stars').outerHTML +
+      '<p class="rv-modal-text">' + c.querySelector('.rv-text').innerHTML + '</p>' +
+      '<span class="rv-src">Avis Google</span></div>';
+    var prev = document.activeElement;
+    root.classList.add('rv-hold');
+    document.body.appendChild(m);
+    document.documentElement.style.overflow = 'hidden';
+    function close() {
+      m.remove(); root.classList.remove('rv-hold'); document.documentElement.style.overflow = '';
+      document.removeEventListener('keydown', key); if (prev) prev.focus();
+    }
+    function key(e) { if (e.key === 'Escape') close(); }
+    m.addEventListener('click', function (e) { if (e.target === m || e.target.closest('.rv-modal-close')) close(); });
+    document.addEventListener('keydown', key);
+    m.querySelector('.rv-modal-close').focus();
   }
 
   function init() {
