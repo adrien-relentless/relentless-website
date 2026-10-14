@@ -1,7 +1,7 @@
 /* Avis Google — bandeau défilant horizontal.
    Données : data/avis-google.csv (colonnes prenom, note, date, texte, afficher, fictif).
-   - afficher = "oui" → avis montré (seuls les avis 5 étoiles avec texte sont affichés)
-   - afficher = "non" → avis non montré mais compté dans la note et le nombre d'avis (ex. avis sans texte)
+   - afficher = "oui" → avis montré (seuls les avis 5 étoiles sont affichés ; un avis sans texte = carte nom + étoiles)
+   - afficher = "non" → avis non montré mais compté dans la note et le nombre d'avis
    - fictif = "oui" → avis de démonstration : un badge « Aperçu · avis fictifs » s'affiche.
      Remplacer par les vrais avis (et vider la colonne fictif) avant la mise en ligne.
    Lien « Voir tous les avis » : attribut data-google-url sur le bloc .reviews (vide → bouton masqué). */
@@ -35,14 +35,14 @@
       '<div class="rv-head"><span class="rv-avatar" aria-hidden="true">' + esc(r.prenom.charAt(0).toUpperCase()) + '</span>' +
       '<div class="rv-who"><span class="rv-name">' + esc(r.prenom) + '</span><span class="rv-date">' + esc(r.date) + '</span></div></div>' +
       stars(5) +
-      '<p class="rv-text">' + esc(r.texte) + '</p>' +
+      (r.texte ? '<p class="rv-text">' + esc(r.texte) + '</p>' : '') +
       '<span class="rv-src">Avis Google</span>' +
       '</article>';
   }
 
   function render(root, rows) {
     var list = rows.filter(function (r) {
-      return (r.afficher || '').toLowerCase() === 'oui' && parseInt(r.note, 10) === 5 && r.texte;
+      return (r.afficher || '').toLowerCase() === 'oui' && parseInt(r.note, 10) === 5;
     });
     if (!list.length) { root.hidden = true; return; }
     var preview = list.some(function (r) { return (r.fictif || '').toLowerCase() === 'oui'; });
@@ -130,6 +130,7 @@
     function check() {
       root.querySelectorAll('.rv-card').forEach(function (c) {
         var t = c.querySelector('.rv-text'), b = c.querySelector('.rv-more');
+        if (!t) return;
         var cut = t.scrollHeight > t.clientHeight + 2;
         if (cut && !b) {
           b = document.createElement('button'); b.type = 'button'; b.className = 'rv-more'; b.textContent = 'Lire la suite';
