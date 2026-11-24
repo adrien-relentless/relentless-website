@@ -1860,7 +1860,6 @@
     var v = document.getElementById('heroVideo');
     if (!v) return;
     if (window.matchMedia('(max-width: 699px), (max-aspect-ratio: 3/4)').matches) v.poster = '/data/hero/hero-poster-mobile.jpg';
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); return; }
     v.muted = true; v.defaultMuted = true;
     function tryPlay() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
     function onGesture() { tryPlay(); ['touchstart', 'click', 'scroll'].forEach(function (e) { window.removeEventListener(e, onGesture); }); }
